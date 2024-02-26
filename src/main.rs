@@ -23,5 +23,5 @@ fn main() {
     let output_cost: f32 = (output_requests / 1000.0) * _price_output_1k;
 
     println!("The prompt tokens will cost: {}USD, for {} tokens generated", input_cost, input_requests);
-    println!("The completition tokens will cost: {}USD", output_cost);
+    println!("The completition tokens will cost: {}USD, for {} tokens generated", output_cost, output_requests);
 }
