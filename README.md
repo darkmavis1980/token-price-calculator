@@ -12,8 +12,26 @@ This takes in account only for the `GPT-3.5 Turbo` models current pricing.
 You can either running with cargo, using `cargo run`, or you can build the binary file with:
 
 ```sh
-rustc ./src/main.rs -o calculator
+cargo build --release
+```
 
-# Then run it
-./calculator
+Then you can run the binary file with:
+
+```sh
+./target/release/calculator
+```
+
+## Set the model
+
+The CLI will ask you for the model you want to use, you can choose between the followings:
+
+- `gpt-3.5-turbo`: The default model.
+- `gpt-4-turbo`: The GPT-4 Turbo model.
+- `gpt-4`: The GPT-4 model.
+- `gpt-4-32k`: The GPT-4 32k model.
+
+To pass a model you can call the CLI with the `--model` flag, like this:
+
+```sh
+./target/release/calculator --model gpt-4-turbo
 ```
