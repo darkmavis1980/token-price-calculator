@@ -1,15 +1,15 @@
 struct CostResponse {
-    num_requests: f32,
+    num_tokens: f32,
     cost: f32,
 }
 
 impl CostResponse {
     fn calculate_cost(tokens: f32, requests: f32, pricing: f32) -> Self {
-        let num_requests = tokens * requests;
+        let num_tokens = tokens * requests;
         let cost_per_thousand_requests = pricing / 1000.0;
-        let cost = num_requests * cost_per_thousand_requests;
+        let cost = num_tokens * cost_per_thousand_requests;
 
-        CostResponse { num_requests, cost }
+        CostResponse { num_tokens, cost }
     }
 }
 
@@ -34,6 +34,25 @@ fn main() {
     let input_cost_response = CostResponse::calculate_cost(input_tokens, requests_num, _price_input_1k);
     let output_cost_response = CostResponse::calculate_cost(output_tokens, requests_num, _price_output_1k);
 
-    println!("The prompt tokens will cost: {}USD, for {} tokens generated", input_cost_response.cost, input_cost_response.num_requests);
-    println!("The completition tokens will cost: {}USD, for {} tokens generated", output_cost_response.cost, output_cost_response.num_requests);
+    println!("The prompt tokens will cost: {}USD, for {} tokens generated", input_cost_response.cost, input_cost_response.num_tokens);
+    println!("The completition tokens will cost: {}USD, for {} tokens generated", output_cost_response.cost, output_cost_response.num_tokens);
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_calculate_cost() {
+        let cost_response = CostResponse::calculate_cost(1000.0, 10.0, 0.0005);
+        assert_eq!(cost_response.num_tokens, 10000.0);
+        assert_eq!(cost_response.cost, 0.005);
+    }
+
+    #[test]
+    fn test_calculate_cost_zero() {
+        let cost_response = CostResponse::calculate_cost(0.0, 0.0, 0.0005);
+        assert_eq!(cost_response.num_tokens, 0.0);
+        assert_eq!(cost_response.cost, 0.0);
+    }
 }
