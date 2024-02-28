@@ -4,30 +4,11 @@
 // use std::env;
 use clap::Parser;
 
-struct CostResponse {
-    num_tokens: f32,
-    cost: f32,
-}
+mod cost; // Import the module from the cost folder, looking for mod.rs file
+mod prices; // Import the module from the prices.rs file
 
-impl CostResponse {
-    fn calculate_cost(tokens: f32, requests: f32, pricing: f32) -> Self {
-        let num_tokens = tokens * requests;
-        let cost_per_thousand_requests = pricing / 1000.0;
-        let cost = num_tokens * cost_per_thousand_requests;
-
-        CostResponse { num_tokens, cost }
-    }
-}
-
-fn get_model_prices(model: &str) -> (f32, f32) {
-    match model {
-        "gpt-3.5-turbo" => (0.0005, 0.0015),
-        "gpt-4" => (0.03, 0.06),
-        "gpt-4-32k" => (0.06, 0.12),
-        "gpt-4-turbo" => (0.01, 0.03),
-        _ => (0.0005, 0.0015)
-    }
-}
+use cost::CostResponse;
+use prices::get_model_prices; // Exposes the get_model_prices function from the prices module
 
 #[derive(Parser, Debug)]
 #[command(version, about, long_about = None)]
