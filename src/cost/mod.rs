@@ -25,6 +25,13 @@ mod tests {
     }
 
     #[test]
+    fn test_calculate_cost_high() {
+      let cost_response = CostResponse::calculate_cost(100.0, 10000.0, 0.0005);
+      assert_eq!(cost_response.num_tokens, 1000000.0);
+      assert_eq!(cost_response.cost, 0.5);
+    }
+
+    #[test]
     fn test_calculate_cost_zero() {
         let cost_response = CostResponse::calculate_cost(0.0, 0.0, 0.0005);
         assert_eq!(cost_response.num_tokens, 0.0);
