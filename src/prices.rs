@@ -7,3 +7,43 @@ pub fn get_model_prices(model: &str) -> (f32, f32) {
       _ => (0.0005, 0.0015)
   }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_get_model_prices_gpt_3_5_turbo() {
+        let (input_price, output_price) = get_model_prices("gpt-3.5-turbo");
+        assert_eq!(input_price, 0.0005);
+        assert_eq!(output_price, 0.0015);
+    }
+
+    #[test]
+    fn test_get_model_prices_gpt_4() {
+        let (input_price, output_price) = get_model_prices("gpt-4");
+        assert_eq!(input_price, 0.03);
+        assert_eq!(output_price, 0.06);
+    }
+
+    #[test]
+    fn test_get_model_prices_gpt_4_32k() {
+        let (input_price, output_price) = get_model_prices("gpt-4-32k");
+        assert_eq!(input_price, 0.06);
+        assert_eq!(output_price, 0.12);
+    }
+
+    #[test]
+    fn test_get_model_prices_gpt_4_turbo() {
+        let (input_price, output_price) = get_model_prices("gpt-4-turbo");
+        assert_eq!(input_price, 0.01);
+        assert_eq!(output_price, 0.03);
+    }
+
+    #[test]
+    fn test_get_model_prices_unknown() {
+        let (input_price, output_price) = get_model_prices("unknown");
+        assert_eq!(input_price, 0.0005);
+        assert_eq!(output_price, 0.0015);
+    }
+}
