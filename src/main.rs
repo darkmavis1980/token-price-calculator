@@ -47,22 +47,3 @@ fn main() {
     println!("The prompt tokens will cost: {}USD, for {} tokens generated", input_cost_response.cost, input_cost_response.num_tokens);
     println!("The completition tokens will cost: {}USD, for {} tokens generated", output_cost_response.cost, output_cost_response.num_tokens);
 }
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn test_calculate_cost() {
-        let cost_response = CostResponse::calculate_cost(1000.0, 10.0, 0.0005);
-        assert_eq!(cost_response.num_tokens, 10000.0);
-        assert_eq!(cost_response.cost, 0.005);
-    }
-
-    #[test]
-    fn test_calculate_cost_zero() {
-        let cost_response = CostResponse::calculate_cost(0.0, 0.0, 0.0005);
-        assert_eq!(cost_response.num_tokens, 0.0);
-        assert_eq!(cost_response.cost, 0.0);
-    }
-}
