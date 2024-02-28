@@ -1,6 +1,6 @@
 # OpenAI Tokens calculator
 
-This takes in account only for the `GPT-3.5 Turbo` models current pricing.
+This takes in account only for some models with the current pricing as Feb 2024.
 
 ## Requirements
 
