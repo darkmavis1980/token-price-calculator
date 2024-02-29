@@ -1,8 +1,5 @@
-/// The line `use std::env;` in Rust is a way to bring the `env` module into scope, allowing you to use
-/// functions and types defined in that module without having to fully qualify them with the module name
-/// each time.
-// use std::env;
 use clap::Parser;
+use num_format::{Locale, ToFormattedString};
 
 mod cost; // Import the module from the cost folder, looking for mod.rs file
 mod prices; // Import the module from the prices.rs file
@@ -44,6 +41,13 @@ fn main() {
     let input_cost_response = CostResponse::calculate_cost(input_tokens, requests_num, _price_input_1k);
     let output_cost_response = CostResponse::calculate_cost(output_tokens, requests_num, _price_output_1k);
 
-    println!("The prompt tokens will cost: {}USD, for {} tokens generated", input_cost_response.cost, input_cost_response.num_tokens);
-    println!("The completition tokens will cost: {}USD, for {} tokens generated", output_cost_response.cost, output_cost_response.num_tokens);
+    let input_total_tokens: String = (input_cost_response.num_tokens as i32).to_formatted_string(&Locale::en);
+    let output_total_tokens: String = (output_cost_response.num_tokens as i32).to_formatted_string(&Locale::en);
+    let total_tokens = (input_cost_response.num_tokens + output_cost_response.num_tokens) as i32;
+    let total_cost = (input_cost_response.cost + output_cost_response.cost) as i32;
+
+    println!("The prompt tokens will cost: {} USD, for {} tokens generated", input_cost_response.cost, input_total_tokens);
+    println!("The completition tokens will cost: {} USD, for {} tokens generated", output_cost_response.cost, output_total_tokens);
+    println!("Total tokens: {}", total_tokens.to_formatted_string(&Locale::en));
+    println!("Total cost with OpenAI: {} USD", total_cost.to_formatted_string(&Locale::en));
 }
