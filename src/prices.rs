@@ -8,6 +8,13 @@ pub fn get_model_prices(model: &str) -> (f32, f32) {
   }
 }
 
+pub const MODELS: [&str; 4] = [
+  "gpt-3.5-turbo",
+  "gpt-4",
+  "gpt-4-32k",
+  "gpt-4-turbo",
+];
+
 #[cfg(test)]
 mod tests {
     use super::*;

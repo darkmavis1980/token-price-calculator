@@ -1,12 +1,13 @@
 [package]
 name = "token_calculator"
-version = "0.4.2"
+version = "0.5.0"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
 clap = { version = "4.5.1", features = ["derive"] }
+inquire = "0.7.0"
 num-format = "0.4.4"
 
 [[bin]]

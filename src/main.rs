@@ -1,30 +1,42 @@
 use clap::Parser;
 use num_format::{Locale, ToFormattedString};
+use inquire::Select;
 
 mod cost; // Import the module from the cost folder, looking for mod.rs file
 mod prices; // Import the module from the prices.rs file
 
 use cost::CostResponse;
 use prices::get_model_prices; // Exposes the get_model_prices function from the prices module
+use prices::MODELS;
 
 #[derive(Parser, Debug)]
 #[command(version, about, long_about = None)]
 struct Args {
     /// Name of the person to greet
-    #[arg(short, long, default_value = "gpt-3.5-turbo", help = "The model to use as reference")]
+    #[arg(short, long, default_value = "", help = "The model to use as reference")]
     model: String,
 }
 
 fn main() {
     let args = Args::parse();
-
-    println!("Using model: {}", args.model);
-
     let mut input = String::new();
     let mut output = String::new();
     let mut num_request = String::new();
 
-    let (_price_input_1k, _price_output_1k) = get_model_prices(&args.model);
+    let model: String;
+
+    if args.model.is_empty() {
+        let answer = Select::new("What model are you using?", MODELS.to_vec()).prompt();
+        model = answer.unwrap().to_string();
+    } else {
+        model = args.model;
+    }
+    // let model = Select::new("What model are you using?", MODELS.to_vec()).prompt();
+
+    println!("Using model: {}", model.to_string());
+    let (_price_input_1k, _price_output_1k) = get_model_prices(&model);
+
+    // println!("Answer is {}", ans.unwrap());
 
     println!("Please enter the amount of average prompt tokens");
     std::io::stdin().read_line(&mut input).unwrap();
