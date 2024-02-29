@@ -28,15 +28,15 @@ fn main() {
 
     println!("Please enter the amount of average prompt tokens");
     std::io::stdin().read_line(&mut input).unwrap();
-    let input_tokens: f32 = input.trim().parse::<f32>().unwrap();
+    let input_tokens: i32 = input.trim().parse::<i32>().unwrap();
 
     println!("Please enter the amount of average completition tokens");
     std::io::stdin().read_line(&mut output).unwrap();
-    let output_tokens: f32 = output.trim().parse::<f32>().unwrap();
+    let output_tokens: i32 = output.trim().parse::<i32>().unwrap();
 
     println!("Please enter the amount of requests");
     std::io::stdin().read_line(&mut num_request).unwrap();
-    let requests_num: f32 = num_request.trim().parse::<f32>().unwrap();
+    let requests_num: i32 = num_request.trim().parse::<i32>().unwrap();
 
     let input_cost_response = CostResponse::calculate_cost(input_tokens, requests_num, _price_input_1k);
     let output_cost_response = CostResponse::calculate_cost(output_tokens, requests_num, _price_output_1k);
