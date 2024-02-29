@@ -31,12 +31,9 @@ fn main() {
     } else {
         model = args.model;
     }
-    // let model = Select::new("What model are you using?", MODELS.to_vec()).prompt();
 
     println!("Using model: {}", model.to_string());
     let (_price_input_1k, _price_output_1k) = get_model_prices(&model);
-
-    // println!("Answer is {}", ans.unwrap());
 
     println!("Please enter the amount of average prompt tokens");
     std::io::stdin().read_line(&mut input).unwrap();
