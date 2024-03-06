@@ -1,6 +1,8 @@
 pub fn get_model_prices(model: &str) -> (f32, f32) {
   match model {
       "gpt-3.5-turbo" => (0.0005, 0.0015),
+      "gpt-3.5-turbo-0125" => (0.0005, 0.0015),
+      "gpt-3.5-turbo-instruct" => (0.0015, 0.002),
       "gpt-4" => (0.03, 0.06),
       "gpt-4-32k" => (0.06, 0.12),
       "gpt-4-turbo" => (0.01, 0.03),
@@ -8,8 +10,10 @@ pub fn get_model_prices(model: &str) -> (f32, f32) {
   }
 }
 
-pub const MODELS: [&str; 4] = [
+pub const MODELS: [&str; 6] = [
   "gpt-3.5-turbo",
+  "gpt-3.5-turbo-0125",
+  "gpt-3.5-turbo-instruct",
   "gpt-4",
   "gpt-4-32k",
   "gpt-4-turbo",
@@ -24,6 +28,20 @@ mod tests {
         let (input_price, output_price) = get_model_prices("gpt-3.5-turbo");
         assert_eq!(input_price, 0.0005);
         assert_eq!(output_price, 0.0015);
+    }
+
+    #[test]
+    fn test_get_model_prices_gpt_3_5_turbo_0125() {
+        let (input_price, output_price) = get_model_prices("gpt-3.5-turbo-0125");
+        assert_eq!(input_price, 0.0005);
+        assert_eq!(output_price, 0.0015);
+    }
+
+    #[test]
+    fn test_get_model_prices_gpt_3_5_turbo_instruct() {
+        let (input_price, output_price) = get_model_prices("gpt-3.5-turbo-instruct");
+        assert_eq!(input_price, 0.0015);
+        assert_eq!(output_price, 0.002);
     }
 
     #[test]
