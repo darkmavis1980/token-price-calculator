@@ -26,9 +26,11 @@ Then you can run the binary file with:
 The CLI will ask you for the model you want to use, you can choose between the followings:
 
 - `gpt-3.5-turbo`: The default model.
+- `gpt-3.5-turbo-instruct`: The GPT-3.5 Turbo Instruct model.
 - `gpt-4-turbo`: The GPT-4 Turbo model.
 - `gpt-4`: The GPT-4 model.
 - `gpt-4-32k`: The GPT-4 32k model.
+- `gtp-4o`: The GPT-4o model.
 
 To pass a model you can call the CLI with the `--model` flag, like this:
 
