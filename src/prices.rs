@@ -6,7 +6,7 @@ pub fn get_model_prices(model: &str) -> (f32, f32) {
       "gpt-4" => (0.03, 0.06),
       "gpt-4-32k" => (0.06, 0.12),
       "gpt-4-turbo" => (0.01, 0.03),
-      "gtp-4o" => (0.0005, 0.0015),
+      "gpt-4o" => (0.005, 0.015),
       _ => (0.0005, 0.0015)
   }
 }
@@ -49,8 +49,8 @@ mod tests {
     #[test]
     fn test_get_model_prices_gpt_4o() {
         let (input_price, output_price) = get_model_prices("gpt-4o");
-        assert_eq!(input_price, 0.0005);
-        assert_eq!(output_price, 0.0015);
+        assert_eq!(input_price, 0.005);
+        assert_eq!(output_price, 0.015);
     }
 
     #[test]
