@@ -31,6 +31,7 @@ The CLI will ask you for the model you want to use, you can choose between the f
 - `gpt-4`: The GPT-4 model.
 - `gpt-4-32k`: The GPT-4 32k model.
 - `gtp-4o`: The GPT-4o model.
+- `gemini`: The Gemini model.
 
 To pass a model you can call the CLI with the `--model` flag, like this:
 
