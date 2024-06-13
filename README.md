@@ -1,6 +1,11 @@
-# OpenAI Tokens calculator
+# Tokens Price calculator
 
 This takes in account only for some models with the current pricing as June 2024.
+
+The AI vendors are the following:
+
+- Google Gemini
+- OpenAI
 
 ## Requirements
 
