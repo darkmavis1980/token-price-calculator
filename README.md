@@ -32,6 +32,7 @@ The CLI will ask you for the model you want to use, you can choose between the f
 
 - `gemini`: The Google Gemini model.
 - `gtp-4o`: The OpenAI GPT-4o model, default model.
+- `gtp-4o-mini`: The OpenAI GPT-4o-mini model.
 - `gpt-3.5-turbo`: The OpenAI GPT-3.5 model.
 - `gpt-3.5-turbo-instruct`: The OpenAI GPT-3.5 Turbo Instruct model.
 - `gpt-4-turbo`: The OpenAI GPT-4 Turbo model.
