@@ -16,10 +16,13 @@ use helpers::convert_float_to_string;
 #[derive(Parser, Debug)]
 #[command(version, about, long_about = None)]
 struct Args {
-    #[arg(short, long, default_value = "", help = "The provider to use")]
-    provider: String,
+    /// The model to use as reference
     #[arg(short, long, default_value = "", help = "The model to use as reference")]
     model: String,
+
+    /// The provider to use
+    #[arg(short, long, default_value = "", help = "The provider to use")]
+    provider: String,
 }
 
 fn main() {
