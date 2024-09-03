@@ -10,6 +10,9 @@ pub fn get_perplexity_model_prices(model: &str) -> (f32, f32) {
     match model {
         "llama-3.1-sonar-small-128k-chat" => (0.0002, 0.0002),
         "llama-3.1-sonar-large-128k-chat" => (0.001, 0.001),
+        "llama-3.1-sonar-small-128k-online" => (0.0002, 0.0002),
+        "llama-3.1-sonar-large-128k-online" => (0.001, 0.001),
+        "llama-3.1-sonar-huge-128k-online" => (0.005, 0.005),
         _ => (0.0002, 0.0002)
     }
 }
