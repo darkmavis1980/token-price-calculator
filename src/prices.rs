@@ -70,17 +70,6 @@ pub fn get_provider_models(provider: &str) -> Vec<&str> {
     }
 }
 
-// pub const MODELS: [&str; 8] = [
-//     "gemini",
-//     "gpt-4o",
-//     "gpt-4o-mini",
-//     "gpt-3.5-turbo",
-//     "gpt-3.5-turbo-instruct",
-//     "gpt-4",
-//     "gpt-4-32k",
-//     "gpt-4-turbo",
-// ];
-
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -153,5 +142,12 @@ mod tests {
         let (input_price, output_price) = get_model_prices("google", "gemini_128k");
         assert_eq!(input_price, 0.0007);
         assert_eq!(output_price, 0.0021);
+    }
+
+    #[test]
+    fn test_get_model_prices_perplexity_llama_small_chat() {
+        let (input_price, output_price) = get_model_prices("perplexity", "llama-3.1-sonar-small-128k-chat");
+        assert_eq!(input_price, 0.0002);
+        assert_eq!(output_price, 0.0002);
     }
 }
