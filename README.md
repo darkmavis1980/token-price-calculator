@@ -6,6 +6,7 @@ The AI vendors are the following:
 
 - Google Gemini
 - OpenAI
+- Perplexity AI
 
 ## Requirements
 
@@ -28,9 +29,15 @@ Then you can run the binary file with:
 
 ## Set the model
 
-The CLI will ask you for the model you want to use, you can choose between the followings:
+The CLI will ask you for the provider, for example 'openai', and the model you want to use, you can choose between the followings:
+
+### Google
 
 - `gemini`: The Google Gemini model.
+- `gemini_128k`: The Google Gemini 128k+ model.
+
+### OpenAI
+
 - `gtp-4o`: The OpenAI GPT-4o model, default model.
 - `gtp-4o-mini`: The OpenAI GPT-4o-mini model.
 - `gpt-3.5-turbo`: The OpenAI GPT-3.5 model.
@@ -39,8 +46,16 @@ The CLI will ask you for the model you want to use, you can choose between the f
 - `gpt-4`: The OpenAI GPT-4 model.
 - `gpt-4-32k`: The OpenAI GPT-4 32k model.
 
+### Perplexity AI
+
+- `llama-3.1-sonar-small-128k-chat`: The Perplexity AI Llama 3.1 Sonar Small 128k Chat model.
+- `llama-3.1-sonar-large-128k-chat`: The Perplexity AI Llama 3.1 Sonar Large 128k Chat model.
+- `llama-3.1-sonar-small-128k-online`: The Perplexity AI Llama 3.1 Sonar Small 128k Online model.
+- `llama-3.1-sonar-large-128k-online`: The Perplexity AI Llama 3.1 Sonar Large 128k Online model.
+- `llama-3.1-sonar-huge-128k-online`: The Perplexity AI Llama 3.1 Sonar Huge 128k Online model.
+
 To pass a model you can call the CLI with the `--model` flag, like this:
 
 ```sh
-./target/release/calculator --model gpt-4-turbo
+./target/release/calculator --provider openai --model gpt-4-turbo
 ```
