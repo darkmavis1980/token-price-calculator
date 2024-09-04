@@ -1,6 +1,6 @@
 # Tokens Price calculator
 
-This takes in account only for some models with the current pricing as June 2024.
+This takes in account only for some models with the current pricing as September 2024.
 
 The AI vendors are the following:
 
@@ -33,8 +33,11 @@ The CLI will ask you for the provider, for example 'openai', and the model you w
 
 ### Google
 
-- `gemini`: The Google Gemini model.
-- `gemini_128k`: The Google Gemini 128k+ model.
+- `gemini-1-pro`: The Google Gemini 1 Pro model.
+- `gemini-1.5-pro`: The Google Gemini 1.5 Pro model.
+- `gemini-1.5-pro-128k`: The Google Gemini 1.5 Pro 128k+ model.
+- `gemini-1.5-flash`: The Google Gemini 1.5 Flash model.
+- `gemini-1.5-flash-128k`: The Google Gemini 1.5 Flash 128k+ model.
 
 ### OpenAI
 

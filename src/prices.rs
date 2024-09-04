@@ -1,8 +1,11 @@
 pub fn get_google_model_prices(model: &str) -> (f32, f32) {
     match model {
-        "gemini" => (0.00035, 0.00105),
-        "gemini_128k" => (0.0007, 0.0021),
-        _ => (0.00035, 0.00105)
+        "gemini-1-pro" => (0.0005, 0.0015),
+        "gemini-1.5-pro" => (0.0035, 0.00105),
+        "gemini-1.5-pro-128k" => (0.0007, 0.0021),
+        "gemini-1.5-flash" => (0.000075, 0.0003),
+        "gemini-1.5-flash-128k" => (0.00015, 0.0006),
+        _ => (0.0005, 0.0015)
     }
 }
 
@@ -58,7 +61,13 @@ pub fn get_provider_models(provider: &str) -> Vec<&str> {
             "gpt-4o",
             "gpt-4o-mini",
         ],
-        "google" => vec!["gemini", "gemini_128k"],
+        "google" => vec![
+            "gemini-1-pro",
+            "gemini-1.5-pro",
+            "gemini-1.5-pro-128k",
+            "gemini-1.5-flash",
+            "gemini-1.5-flash-128k",
+        ],
         "perplexity" => vec![
             "llama-3.1-sonar-small-128k-chat",
             "llama-3.1-sonar-large-128k-chat",
@@ -131,15 +140,22 @@ mod tests {
     }
 
     #[test]
-    fn test_get_model_prices_gemini() {
-        let (input_price, output_price) = get_model_prices("google", "gemini");
-        assert_eq!(input_price, 0.00035);
+    fn test_get_model_prices_gemini_1_pro() {
+        let (input_price, output_price) = get_model_prices("google", "gemini-1-pro");
+        assert_eq!(input_price, 0.0005);
+        assert_eq!(output_price, 0.0015);
+    }
+
+    #[test]
+    fn test_get_model_prices_gemini_1_5_pro() {
+        let (input_price, output_price) = get_model_prices("google", "gemini-1.5-pro");
+        assert_eq!(input_price, 0.0035);
         assert_eq!(output_price, 0.00105);
     }
 
     #[test]
-    fn test_get_model_prices_gemini_128k() {
-        let (input_price, output_price) = get_model_prices("google", "gemini_128k");
+    fn test_get_model_prices_gemini_1_5_pro_128k() {
+        let (input_price, output_price) = get_model_prices("google", "gemini-1.5-pro-128k");
         assert_eq!(input_price, 0.0007);
         assert_eq!(output_price, 0.0021);
     }
