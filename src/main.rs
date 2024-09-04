@@ -1,7 +1,6 @@
 use clap::Parser;
 use num_format::{Locale, ToFormattedString};
 use inquire::Select;
-use inquire::Confirm;
 
 mod cost; // Import the module from the cost folder, looking for mod.rs file
 mod prices; // Import the module from the prices.rs file
@@ -33,7 +32,7 @@ fn main() {
 
     let mut additinal_costs: f32 = 0.0;
 
-    let mut model: String;
+    let model: String;
     let provider: String;
 
     if args.provider.is_empty() {
@@ -48,16 +47,6 @@ fn main() {
         model = answer.unwrap().to_string();
     } else {
         model = args.model;
-    }
-
-    if model == "gemini" {
-        let gemini_large = Confirm::new("Are you going to use prompts with more than 128k tokens?")
-            .with_default(false)
-            .prompt();
-        if gemini_large.unwrap() {
-            println!("Using higher tier for Gemini model");
-            model = "gemini_128k".to_string();
-        }
     }
 
     println!("Using model: {}", model.to_string());
