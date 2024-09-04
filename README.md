@@ -42,6 +42,7 @@ The CLI will ask you for the provider, for example 'openai', and the model you w
 ### OpenAI
 
 - `gtp-4o`: The OpenAI GPT-4o model, default model.
+- `gpt-4o-2024-08-06`: The OpenAI GPT-4o model from 2024-08-06.
 - `gtp-4o-mini`: The OpenAI GPT-4o-mini model.
 - `gpt-3.5-turbo`: The OpenAI GPT-3.5 model.
 - `gpt-3.5-turbo-instruct`: The OpenAI GPT-3.5 Turbo Instruct model.

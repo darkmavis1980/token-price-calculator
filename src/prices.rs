@@ -28,6 +28,7 @@ pub fn get_openai_model_prices(model: &str) -> (f32, f32) {
         "gpt-4-32k" => (0.06, 0.12),
         "gpt-4-turbo" => (0.01, 0.03),
         "gpt-4o" => (0.005, 0.015),
+        "gpt-4o-2024-08-06" => (0.0025, 0.01),
         "gpt-4o-mini" => (0.00015, 0.0006),
         _ => (0.005, 0.015)
     }
@@ -59,6 +60,7 @@ pub fn get_provider_models(provider: &str) -> Vec<&str> {
             "gpt-4-32k",
             "gpt-4-turbo",
             "gpt-4o",
+            "gpt-4o-2024-08-06",
             "gpt-4o-mini",
         ],
         "google" => vec![
