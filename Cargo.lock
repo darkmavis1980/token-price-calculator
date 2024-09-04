@@ -397,7 +397,7 @@ dependencies = [
 
 [[package]]
 name = "token_calculator"
-version = "0.11.0"
+version = "0.11.1"
 dependencies = [
  "clap",
  "inquire",
