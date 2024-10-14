@@ -7,6 +7,7 @@ The AI vendors are the following:
 - Google Gemini
 - OpenAI
 - Perplexity AI
+- Groq (only stable models)
 
 ## Requirements
 
@@ -42,7 +43,6 @@ The CLI will ask you for the provider, for example 'openai', and the model you w
 ### OpenAI
 
 - `gtp-4o`: The OpenAI GPT-4o model, default model.
-- `gpt-4o-2024-08-06`: The OpenAI GPT-4o model from 2024-08-06.
 - `gtp-4o-mini`: The OpenAI GPT-4o-mini model.
 - `gpt-3.5-turbo`: The OpenAI GPT-3.5 model.
 - `gpt-3.5-turbo-instruct`: The OpenAI GPT-3.5 Turbo Instruct model.
@@ -57,6 +57,13 @@ The CLI will ask you for the provider, for example 'openai', and the model you w
 - `llama-3.1-sonar-small-128k-online`: The Perplexity AI Llama 3.1 Sonar Small 128k Online model.
 - `llama-3.1-sonar-large-128k-online`: The Perplexity AI Llama 3.1 Sonar Large 128k Online model.
 - `llama-3.1-sonar-huge-128k-online`: The Perplexity AI Llama 3.1 Sonar Huge 128k Online model.
+
+### Groq
+
+- `gemma2-9b-it`: The Groq Gemma2 9B 8k model.
+- `gemma-7b-it`: The Groq Gemma 7B 8k Instruct model.
+- `llama-3.1-70b-versatile`: The Groq Llama 3.1 70B Versatile 128k model.
+- `llama-3.1-8b-instant`: The Groq Llama 3.1 8B Instant 128k model.
 
 To pass a model you can call the CLI with the `--model` flag, like this:
 
