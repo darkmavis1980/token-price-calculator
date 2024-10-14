@@ -27,8 +27,7 @@ pub fn get_openai_model_prices(model: &str) -> (f32, f32) {
         "gpt-4" => (0.03, 0.06),
         "gpt-4-32k" => (0.06, 0.12),
         "gpt-4-turbo" => (0.01, 0.03),
-        "gpt-4o" => (0.005, 0.015),
-        "gpt-4o-2024-08-06" => (0.0025, 0.01),
+        "gpt-4o" => (0.0025, 0.01),
         "gpt-4o-mini" => (0.00015, 0.0006),
         _ => (0.005, 0.015)
     }
@@ -55,7 +54,6 @@ pub fn get_provider_models(provider: &str) -> Vec<&str> {
     match provider {
         "openai" => vec![
             "gpt-4o",
-            "gpt-4o-2024-08-06",
             "gpt-4o-mini",
             "gpt-4",
             "gpt-4-32k",
@@ -102,8 +100,8 @@ mod tests {
     #[test]
     fn test_get_model_prices_gpt_4o() {
         let (input_price, output_price) = get_model_prices("openai", "gpt-4o");
-        assert_eq!(input_price, 0.005);
-        assert_eq!(output_price, 0.015);
+        assert_eq!(input_price, 0.0025);
+        assert_eq!(output_price, 0.01);
     }
 
     #[test]
