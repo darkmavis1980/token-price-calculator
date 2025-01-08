@@ -11,8 +11,6 @@ pub fn get_google_model_prices(model: &str) -> (f32, f32) {
 
 pub fn get_perplexity_model_prices(model: &str) -> (f32, f32) {
     match model {
-        "llama-3.1-sonar-small-128k-chat" => (0.0002, 0.0002),
-        "llama-3.1-sonar-large-128k-chat" => (0.001, 0.001),
         "llama-3.1-sonar-small-128k-online" => (0.0002, 0.0002),
         "llama-3.1-sonar-large-128k-online" => (0.001, 0.001),
         "llama-3.1-sonar-huge-128k-online" => (0.005, 0.005),
@@ -29,6 +27,8 @@ pub fn get_openai_model_prices(model: &str) -> (f32, f32) {
         "gpt-4-turbo" => (0.01, 0.03),
         "gpt-4o" => (0.0025, 0.01),
         "gpt-4o-mini" => (0.00015, 0.0006),
+        "o1" => (0.015, 0.06),
+        "o1-mini" => (0.0030, 0.012),
         _ => (0.005, 0.015)
     }
 }
@@ -80,8 +80,6 @@ pub fn get_provider_models(provider: &str) -> Vec<&str> {
             "gemini-1.5-flash-128k",
         ],
         "perplexity" => vec![
-            "llama-3.1-sonar-small-128k-chat",
-            "llama-3.1-sonar-large-128k-chat",
             "llama-3.1-sonar-small-128k-online",
             "llama-3.1-sonar-large-128k-online",
             "llama-3.1-sonar-huge-128k-online",
@@ -179,7 +177,7 @@ mod tests {
 
     #[test]
     fn test_get_model_prices_perplexity_llama_small_chat() {
-        let (input_price, output_price) = get_model_prices("perplexity", "llama-3.1-sonar-small-128k-chat");
+        let (input_price, output_price) = get_model_prices("perplexity", "llama-3.1-sonar-small-128k-online");
         assert_eq!(input_price, 0.0002);
         assert_eq!(output_price, 0.0002);
     }
