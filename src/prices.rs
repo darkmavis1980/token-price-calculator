@@ -14,7 +14,9 @@ pub fn get_perplexity_model_prices(model: &str) -> (f32, f32) {
         "llama-3.1-sonar-small-128k-online" => (0.0002, 0.0002),
         "llama-3.1-sonar-large-128k-online" => (0.001, 0.001),
         "llama-3.1-sonar-huge-128k-online" => (0.005, 0.005),
-        _ => (0.0002, 0.0002)
+        "sonar" => (0.001, 0.001),
+        "sonar-pro" => (0.003, 0.015),
+        _ => (0.001, 0.001)
     }
 }
 
@@ -83,6 +85,8 @@ pub fn get_provider_models(provider: &str) -> Vec<&str> {
             "llama-3.1-sonar-small-128k-online",
             "llama-3.1-sonar-large-128k-online",
             "llama-3.1-sonar-huge-128k-online",
+            "sonar",
+            "sonar-pro",
         ],
         "groq" => vec![
             "gemma2-9b-it",

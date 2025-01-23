@@ -54,9 +54,11 @@ The CLI will ask you for the provider, for example 'openai', and the model you w
 
 ### Perplexity AI
 
-- `llama-3.1-sonar-small-128k-online`: The Perplexity AI Llama 3.1 Sonar Small 128k Online model.
-- `llama-3.1-sonar-large-128k-online`: The Perplexity AI Llama 3.1 Sonar Large 128k Online model.
-- `llama-3.1-sonar-huge-128k-online`: The Perplexity AI Llama 3.1 Sonar Huge 128k Online model.
+- `sonar`: The Perplexity AI Sonar model.
+- `sonar-pro`: The Perplexity AI Sonar Pro model.
+- `llama-3.1-sonar-small-128k-online`: The Perplexity AI Llama 3.1 Sonar Small 128k Online model (deprecated from 22/02/2025).
+- `llama-3.1-sonar-large-128k-online`: The Perplexity AI Llama 3.1 Sonar Large 128k Online model (deprecated from 22/02/2025).
+- `llama-3.1-sonar-huge-128k-online`: The Perplexity AI Llama 3.1 Sonar Huge 128k Online model (deprecated from 22/02/2025).
 
 ### Groq
 
