@@ -5,6 +5,8 @@ pub fn get_google_model_prices(model: &str) -> (f32, f32) {
         "gemini-1.5-pro-128k" => (0.0007, 0.0021),
         "gemini-1.5-flash" => (0.000075, 0.0003),
         "gemini-1.5-flash-128k" => (0.00015, 0.0006),
+        "gemini-2.0-flash" => (0.0001, 0.0004),
+        "gemini-2.0-flash-lite-preview-02-05" => (0.000075, 0.0003),
         _ => (0.0005, 0.0015)
     }
 }
@@ -16,6 +18,8 @@ pub fn get_perplexity_model_prices(model: &str) -> (f32, f32) {
         "llama-3.1-sonar-huge-128k-online" => (0.005, 0.005),
         "sonar" => (0.001, 0.001),
         "sonar-pro" => (0.003, 0.015),
+        "sonar-reasoning" => (0.001, 0.005),
+        "sonar-reasoning-pro" => (0.002, 0.008),
         _ => (0.001, 0.001)
     }
 }
@@ -73,6 +77,8 @@ pub fn get_provider_models(provider: &str) -> Vec<&str> {
             "gpt-4-turbo",
             "gpt-3.5-turbo",
             "gpt-3.5-turbo-instruct",
+            "o1",
+            "o1-mini",
         ],
         "google" => vec![
             "gemini-1-pro",
@@ -80,13 +86,14 @@ pub fn get_provider_models(provider: &str) -> Vec<&str> {
             "gemini-1.5-pro-128k",
             "gemini-1.5-flash",
             "gemini-1.5-flash-128k",
+            "gemini-2.0-flash",
+            "gemini-2.0-flash-lite-preview-02-05"
         ],
         "perplexity" => vec![
-            "llama-3.1-sonar-small-128k-online",
-            "llama-3.1-sonar-large-128k-online",
-            "llama-3.1-sonar-huge-128k-online",
             "sonar",
             "sonar-pro",
+            "sonar-reasoning",
+            "sonar-reasoning-pro",
         ],
         "groq" => vec![
             "gemma2-9b-it",
@@ -138,6 +145,13 @@ mod tests {
     }
 
     #[test]
+    fn test_get_model_prices_o1() {
+        let (input_price, output_price) = get_model_prices("openai", "o1");
+        assert_eq!(input_price, 0.015);
+        assert_eq!(output_price, 0.06);
+    }
+
+    #[test]
     fn test_get_model_prices_gpt_4_32k() {
         let (input_price, output_price) = get_model_prices("openai", "gpt-4-32k");
         assert_eq!(input_price, 0.06);
@@ -180,9 +194,58 @@ mod tests {
     }
 
     #[test]
-    fn test_get_model_prices_perplexity_llama_small_chat() {
-        let (input_price, output_price) = get_model_prices("perplexity", "llama-3.1-sonar-small-128k-online");
-        assert_eq!(input_price, 0.0002);
-        assert_eq!(output_price, 0.0002);
+    fn test_get_model_prices_gemini_1_5_flash() {
+        let (input_price, output_price) = get_model_prices("google", "gemini-1.5-flash");
+        assert_eq!(input_price, 0.000075);
+        assert_eq!(output_price, 0.0003);
+    }
+
+    #[test]
+    fn test_get_model_prices_gemini_1_5_flash_128k() {
+        let (input_price, output_price) = get_model_prices("google", "gemini-1.5-flash-128k");
+        assert_eq!(input_price, 0.00015);
+        assert_eq!(output_price, 0.0006);
+    }
+
+    #[test]
+    fn test_get_model_prices_gemini_2_0_flash() {
+        let (input_price, output_price) = get_model_prices("google", "gemini-2.0-flash");
+        assert_eq!(input_price, 0.0001);
+        assert_eq!(output_price, 0.0004);
+    }
+
+    #[test]
+    fn test_get_model_prices_gemini_2_0_flash_lite_preview_02_05() {
+        let (input_price, output_price) = get_model_prices("google", "gemini-2.0-flash-lite-preview-02-05");
+        assert_eq!(input_price, 0.000075);
+        assert_eq!(output_price, 0.0003);
+    }
+
+    #[test]
+    fn test_get_model_prices_perplexity_sonar_reasoning_pro() {
+        let (input_price, output_price) = get_model_prices("perplexity", "sonar-reasoning-pro");
+        assert_eq!(input_price, 0.002);
+        assert_eq!(output_price, 0.008);
+    }
+
+    #[test]
+    fn test_get_model_prices_perplexity_sonar_reasoning() {
+        let (input_price, output_price) = get_model_prices("perplexity", "sonar-reasoning");
+        assert_eq!(input_price, 0.001);
+        assert_eq!(output_price, 0.005);
+    }
+
+    #[test]
+    fn test_get_model_prices_perplexity_sonar_pro() {
+        let (input_price, output_price) = get_model_prices("perplexity", "sonar-pro");
+        assert_eq!(input_price, 0.003);
+        assert_eq!(output_price, 0.015);
+    }
+
+    #[test]
+    fn test_get_model_prices_perplexity_sonar() {
+        let (input_price, output_price) = get_model_prices("perplexity", "sonar");
+        assert_eq!(input_price, 0.001);
+        assert_eq!(output_price, 0.001);
     }
 }
