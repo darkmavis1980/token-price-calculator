@@ -39,6 +39,8 @@ The CLI will ask you for the provider, for example 'openai', and the model you w
 - `gemini-1.5-pro-128k`: The Google Gemini 1.5 Pro 128k+ model.
 - `gemini-1.5-flash`: The Google Gemini 1.5 Flash model.
 - `gemini-1.5-flash-128k`: The Google Gemini 1.5 Flash 128k+ model.
+- `gemini-2.0-flash`: The Google Gemini 2.0 Flash model.
+- `gemini-2.0-flash-lite-preview-02-05`: The Google Gemini 2.0 Flash Lite Preview 02-05 model.
 
 ### OpenAI
 
@@ -56,6 +58,8 @@ The CLI will ask you for the provider, for example 'openai', and the model you w
 
 - `sonar`: The Perplexity AI Sonar model.
 - `sonar-pro`: The Perplexity AI Sonar Pro model.
+- `sonar-reasoning`: The Perplexity AI Sonar Reasoning model.
+- `sonar-reasoning-pro`: The Perplexity AI Sonar Reasoning Pro model.
 - `llama-3.1-sonar-small-128k-online`: The Perplexity AI Llama 3.1 Sonar Small 128k Online model (deprecated from 22/02/2025).
 - `llama-3.1-sonar-large-128k-online`: The Perplexity AI Llama 3.1 Sonar Large 128k Online model (deprecated from 22/02/2025).
 - `llama-3.1-sonar-huge-128k-online`: The Perplexity AI Llama 3.1 Sonar Huge 128k Online model (deprecated from 22/02/2025).
