@@ -1,0 +1,63 @@
+name: Build Artifacts
+
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+  # Optionally trigger on push to specific branches if desired
+  # push:
+  #   branches: [ "feature/**" ]
+
+jobs:
+  build:
+    name: Build ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        include:
+          - os: ubuntu-latest
+            artifact_name: token_calculator-linux
+            asset_name: token_calculator-linux
+          - os: windows-latest
+            artifact_name: token_calculator-windows
+            asset_name: token_calculator-windows.exe
+          - os: macos-latest
+            artifact_name: token_calculator-macos
+            asset_name: token_calculator-macos
+
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Rust
+      uses: actions-rs/toolchain@v1
+      with:
+        profile: minimal
+        toolchain: stable
+        override: true
+    
+    - name: Build
+      uses: actions-rs/cargo@v1
+      with:
+        command: build
+        args: --release
+    
+    - name: Prepare artifacts (Windows)
+      if: matrix.os == 'windows-latest'
+      run: |
+        mkdir artifacts
+        copy target/release/token_calculator.exe artifacts/${{ matrix.asset_name }}
+      shell: pwsh
+    
+    - name: Prepare artifacts (Unix)
+      if: matrix.os != 'windows-latest'
+      run: |
+        mkdir artifacts
+        cp target/release/token_calculator artifacts/${{ matrix.asset_name }}
+    
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: ${{ matrix.artifact_name }}
+        path: artifacts/${{ matrix.asset_name }}
+        retention-days: 30
