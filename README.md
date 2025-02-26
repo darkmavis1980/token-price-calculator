@@ -48,6 +48,7 @@ The CLI will ask you for the provider, for example 'openai', and the model you w
 - `gtp-4o-mini`: The OpenAI GPT-4o-mini model.
 - `o1`: The OpenAI O1 model.
 - `o1-mini`: The OpenAI O1 Mini model.
+- `o3-mini`: The OpenAI O3 Mini model.
 - `gpt-3.5-turbo`: The OpenAI GPT-3.5 model.
 - `gpt-3.5-turbo-instruct`: The OpenAI GPT-3.5 Turbo Instruct model.
 - `gpt-4-turbo`: The OpenAI GPT-4 Turbo model.
@@ -60,9 +61,8 @@ The CLI will ask you for the provider, for example 'openai', and the model you w
 - `sonar-pro`: The Perplexity AI Sonar Pro model.
 - `sonar-reasoning`: The Perplexity AI Sonar Reasoning model.
 - `sonar-reasoning-pro`: The Perplexity AI Sonar Reasoning Pro model.
-- `llama-3.1-sonar-small-128k-online`: The Perplexity AI Llama 3.1 Sonar Small 128k Online model (deprecated from 22/02/2025).
-- `llama-3.1-sonar-large-128k-online`: The Perplexity AI Llama 3.1 Sonar Large 128k Online model (deprecated from 22/02/2025).
-- `llama-3.1-sonar-huge-128k-online`: The Perplexity AI Llama 3.1 Sonar Huge 128k Online model (deprecated from 22/02/2025).
+- `sonar-deep-research`: The Perplexity AI Sonar Deep Research model.
+- `r1-1776`: The Perplexity AI R1 1776 model.
 
 ### Groq
 

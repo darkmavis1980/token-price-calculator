@@ -13,13 +13,12 @@ pub fn get_google_model_prices(model: &str) -> (f32, f32) {
 
 pub fn get_perplexity_model_prices(model: &str) -> (f32, f32) {
     match model {
-        "llama-3.1-sonar-small-128k-online" => (0.0002, 0.0002),
-        "llama-3.1-sonar-large-128k-online" => (0.001, 0.001),
-        "llama-3.1-sonar-huge-128k-online" => (0.005, 0.005),
         "sonar" => (0.001, 0.001),
         "sonar-pro" => (0.003, 0.015),
         "sonar-reasoning" => (0.001, 0.005),
         "sonar-reasoning-pro" => (0.002, 0.008),
+        "sonar-deep-research" => (0.002, 0.008),
+        "r1-1776" => (0.002, 0.008),
         _ => (0.001, 0.001)
     }
 }
@@ -34,7 +33,8 @@ pub fn get_openai_model_prices(model: &str) -> (f32, f32) {
         "gpt-4o" => (0.0025, 0.01),
         "gpt-4o-mini" => (0.00015, 0.0006),
         "o1" => (0.015, 0.06),
-        "o1-mini" => (0.0030, 0.012),
+        "o1-mini" => (0.0011, 0.0044),
+        "o3-mini" => (0.0011, 0.0044),
         _ => (0.005, 0.015)
     }
 }
@@ -79,6 +79,7 @@ pub fn get_provider_models(provider: &str) -> Vec<&str> {
             "gpt-3.5-turbo-instruct",
             "o1",
             "o1-mini",
+            "o3-mini",
         ],
         "google" => vec![
             "gemini-1-pro",
@@ -94,6 +95,8 @@ pub fn get_provider_models(provider: &str) -> Vec<&str> {
             "sonar-pro",
             "sonar-reasoning",
             "sonar-reasoning-pro",
+            "sonar-deep-research",
+            "r1-1776",
         ],
         "groq" => vec![
             "gemma2-9b-it",
@@ -128,6 +131,20 @@ mod tests {
         let (input_price, output_price) = get_model_prices("openai", "gpt-4o");
         assert_eq!(input_price, 0.0025);
         assert_eq!(output_price, 0.01);
+    }
+
+    #[test]
+    fn test_get_model_prices_o1_mini() {
+        let (input_price, output_price) = get_model_prices("openai", "o1-mini");
+        assert_eq!(input_price, 0.0011);
+        assert_eq!(output_price, 0.0044);
+    }
+
+    #[test]
+    fn test_get_model_prices_o3_mini() {
+        let (input_price, output_price) = get_model_prices("openai", "o3-mini");
+        assert_eq!(input_price, 0.0011);
+        assert_eq!(output_price, 0.0044);
     }
 
     #[test]
@@ -248,4 +265,20 @@ mod tests {
         assert_eq!(input_price, 0.001);
         assert_eq!(output_price, 0.001);
     }
+
+    #[test]
+    fn test_get_model_prices_perplexity_sonar_deep_research() {
+        let (input_price, output_price) = get_model_prices("perplexity", "sonar-deep-research");
+        assert_eq!(input_price, 0.002);
+        assert_eq!(output_price, 0.008);
+    }
+
+    #[test]
+    fn test_get_model_prices_perplexity_r1_1776() {
+        let (input_price, output_price) = get_model_prices("perplexity", "r1-1776");
+        assert_eq!(input_price, 0.002);
+        assert_eq!(output_price, 0.008);
+    }
+    
+    
 }
