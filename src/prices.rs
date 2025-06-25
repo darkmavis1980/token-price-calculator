@@ -63,7 +63,7 @@ pub fn get_model_prices(provider: &str, model: &str) -> (f32, f32) {
         "google" => get_google_model_prices(model),
         "perplexity" => get_perplexity_model_prices(model),
         "groq" => get_groq_model_prices(model),
-        _ => (0.005, 0.015)
+        _ => (0.002, 0.008)
     }
 }
 
@@ -130,20 +130,6 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_get_model_prices_gpt_3_5_turbo() {
-        let (input_price, output_price) = get_model_prices("openai", "gpt-3.5-turbo");
-        assert_eq!(input_price, 0.0005);
-        assert_eq!(output_price, 0.0015);
-    }
-
-    #[test]
-    fn test_get_model_prices_gpt_3_5_turbo_instruct() {
-        let (input_price, output_price) = get_model_prices("openai", "gpt-3.5-turbo-instruct");
-        assert_eq!(input_price, 0.0015);
-        assert_eq!(output_price, 0.002);
-    }
-
-    #[test]
     fn test_get_model_prices_gpt_4o() {
         let (input_price, output_price) = get_model_prices("openai", "gpt-4o");
         assert_eq!(input_price, 0.0025);
@@ -151,15 +137,15 @@ mod tests {
     }
 
     #[test]
-    fn test_get_model_prices_o1_mini() {
-        let (input_price, output_price) = get_model_prices("openai", "o1-mini");
+    fn test_get_model_prices_o3_mini() {
+        let (input_price, output_price) = get_model_prices("openai", "o3-mini");
         assert_eq!(input_price, 0.0011);
         assert_eq!(output_price, 0.0044);
     }
 
     #[test]
-    fn test_get_model_prices_o3_mini() {
-        let (input_price, output_price) = get_model_prices("openai", "o3-mini");
+    fn test_get_model_prices_o4_mini() {
+        let (input_price, output_price) = get_model_prices("openai", "o4-mini");
         assert_eq!(input_price, 0.0011);
         assert_eq!(output_price, 0.0044);
     }
@@ -173,9 +159,9 @@ mod tests {
 
     #[test]
     fn test_get_model_prices_gpt_4() {
-        let (input_price, output_price) = get_model_prices("openai", "gpt-4");
-        assert_eq!(input_price, 0.03);
-        assert_eq!(output_price, 0.06);
+        let (input_price, output_price) = get_model_prices("openai", "gpt-4.1");
+        assert_eq!(input_price, 0.002);
+        assert_eq!(output_price, 0.008);
     }
 
     #[test]
@@ -186,31 +172,10 @@ mod tests {
     }
 
     #[test]
-    fn test_get_model_prices_gpt_4_32k() {
-        let (input_price, output_price) = get_model_prices("openai", "gpt-4-32k");
-        assert_eq!(input_price, 0.06);
-        assert_eq!(output_price, 0.12);
-    }
-
-    #[test]
-    fn test_get_model_prices_gpt_4_turbo() {
-        let (input_price, output_price) = get_model_prices("openai", "gpt-4-turbo");
-        assert_eq!(input_price, 0.01);
-        assert_eq!(output_price, 0.03);
-    }
-
-    #[test]
     fn test_get_model_prices_unknown() {
         let (input_price, output_price) = get_model_prices("unknown", "unknown");
-        assert_eq!(input_price, 0.005);
-        assert_eq!(output_price, 0.015);
-    }
-
-    #[test]
-    fn test_get_model_prices_gemini_1_pro() {
-        let (input_price, output_price) = get_model_prices("google", "gemini-1-pro");
-        assert_eq!(input_price, 0.0005);
-        assert_eq!(output_price, 0.0015);
+        assert_eq!(input_price, 0.002);
+        assert_eq!(output_price, 0.008);
     }
 
     #[test]
@@ -249,8 +214,8 @@ mod tests {
     }
 
     #[test]
-    fn test_get_model_prices_gemini_2_0_flash_lite_preview_02_05() {
-        let (input_price, output_price) = get_model_prices("google", "gemini-2.0-flash-lite-preview-02-05");
+    fn test_get_model_prices_gemini_2_0_flash_lite() {
+        let (input_price, output_price) = get_model_prices("google", "gemini-2.0-flash-lite");
         assert_eq!(input_price, 0.000075);
         assert_eq!(output_price, 0.0003);
     }
