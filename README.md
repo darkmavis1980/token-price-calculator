@@ -1,6 +1,6 @@
 # Tokens Price calculator
 
-This takes in account only for some models with the current pricing as September 2024.
+This takes in account only for some models with the current pricing as June 2025.
 
 The AI vendors are the following:
 
@@ -34,26 +34,31 @@ The CLI will ask you for the provider, for example 'openai', and the model you w
 
 ### Google
 
-- `gemini-1-pro`: The Google Gemini 1 Pro model.
 - `gemini-1.5-pro`: The Google Gemini 1.5 Pro model.
 - `gemini-1.5-pro-128k`: The Google Gemini 1.5 Pro 128k+ model.
 - `gemini-1.5-flash`: The Google Gemini 1.5 Flash model.
 - `gemini-1.5-flash-128k`: The Google Gemini 1.5 Flash 128k+ model.
 - `gemini-2.0-flash`: The Google Gemini 2.0 Flash model.
-- `gemini-2.0-flash-lite-preview-02-05`: The Google Gemini 2.0 Flash Lite Preview 02-05 model.
+- `gemini-2.0-flash-lite`: The Google Gemini 2.0 Flash Lite Preview 02-05 model.
+- `gemini-2.5-flash`: The Google Gemini 2.5 Flash model.
+- `gemini-2.5-flash-lite`: The Google Gemini 2.5 Flash Lite model.
+- `gemini-2.5-pro`: The Google Gemini 2.5 Pro model.
+- `gemini-2.5-pro-200k`: The Google Gemini 2.5 Pro 200k model.
+
 
 ### OpenAI
 
 - `gtp-4o`: The OpenAI GPT-4o model, default model.
 - `gtp-4o-mini`: The OpenAI GPT-4o-mini model.
+- `gpt-4.1`: The OpenAI GPT-4.1 model.
+- `gpt-4.1-mini`: The OpenAI GPT-4.1-mini model.
+- `gpt-4.1-nano`: The OpenAI GPT-4.1-nano model.
 - `o1`: The OpenAI O1 model.
-- `o1-mini`: The OpenAI O1 Mini model.
+- `o1-pro`: The OpenAI O1 Pro model.
+- `o3`: The OpenAI O3 model.
+- `o3-pro`: The OpenAI O3 Pro model.
 - `o3-mini`: The OpenAI O3 Mini model.
-- `gpt-3.5-turbo`: The OpenAI GPT-3.5 model.
-- `gpt-3.5-turbo-instruct`: The OpenAI GPT-3.5 Turbo Instruct model.
-- `gpt-4-turbo`: The OpenAI GPT-4 Turbo model.
-- `gpt-4`: The OpenAI GPT-4 model.
-- `gpt-4-32k`: The OpenAI GPT-4 32k model.
+- `o4-mini`: The OpenAI O4 Mini model.
 
 ### Perplexity AI
 
@@ -70,9 +75,13 @@ The CLI will ask you for the provider, for example 'openai', and the model you w
 - `gemma-7b-it`: The Groq Gemma 7B 8k Instruct model.
 - `llama-3.1-70b-versatile`: The Groq Llama 3.1 70B Versatile 128k model.
 - `llama-3.1-8b-instant`: The Groq Llama 3.1 8B Instant 128k model.
+- `llama-3.3-70b-versatile`: The Groq Llama 3.3 70B Versatile model.
+- `llama-4-scout`: The Groq Llama 4 Scout model.
+- `llama-4-maverick`: The Groq Llama 4 Maverick model.
+- `llama-guard-4-12b`: The Groq Llama Guard 4 12B model.
 
 To pass a model you can call the CLI with the `--model` flag, like this:
 
 ```sh
-./target/release/calculator --provider openai --model gpt-4-turbo
+./target/release/calculator --provider openai --model gpt-4.1
 ```
