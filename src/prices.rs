@@ -43,6 +43,16 @@ pub fn get_openai_model_prices(model: &str) -> (f32, f32) {
     }
 }
 
+pub fn get_anthropic_model_prices(model: &str) -> (f32, f32) {
+    match model {
+        "claude-3-5-haiku" => (0.0008, 0.004),
+        "claude-3-7-sonnet" => (0.003, 0.015),
+        "claude-4-sonnet" => (0.003, 0.015),
+        "claude-3-opus" => (0.015, 0.075),
+        "claude-4-opus" => (0.015, 0.075),
+        _ => (0.003, 0.015)
+    }
+}
 pub fn get_groq_model_prices(model: &str) -> (f32, f32) {
     match model {
         "gemma2-9b-it" => (0.0002, 0.0002),
@@ -63,6 +73,7 @@ pub fn get_model_prices(provider: &str, model: &str) -> (f32, f32) {
         "google" => get_google_model_prices(model),
         "perplexity" => get_perplexity_model_prices(model),
         "groq" => get_groq_model_prices(model),
+        "anthropic" => get_anthropic_model_prices(model),
         _ => (0.002, 0.008)
     }
 }
@@ -73,7 +84,7 @@ pub fn get_perplexity_online_requests_cost(requests: i32) -> i32 {
     cost
 }
 
-pub const PROVIDERS: [&str; 4] = ["openai", "google", "perplexity", "groq"];
+pub const PROVIDERS: [&str; 5] = ["openai", "google", "perplexity", "groq", "anthropic"];
 
 pub fn get_provider_models(provider: &str) -> Vec<&str> {
     match provider {
@@ -110,6 +121,13 @@ pub fn get_provider_models(provider: &str) -> Vec<&str> {
             "sonar-reasoning-pro",
             "sonar-deep-research",
             "r1-1776",
+        ],
+        "anthropic" => vec![
+            "claude-3-5-haiku",
+            "claude-3-7-sonnet",
+            "claude-4-sonnet",
+            "claude-3-opus",
+            "claude-4-opus",
         ],
         "groq" => vec![
             "gemma2-9b-it",
@@ -261,6 +279,32 @@ mod tests {
         assert_eq!(input_price, 0.002);
         assert_eq!(output_price, 0.008);
     }
-    
-    
+
+    #[test]
+    fn test_get_model_prices_anthropic_claude_3_5_haiku() {
+        let (input_price, output_price) = get_model_prices("anthropic", "claude-3-5-haiku");
+        assert_eq!(input_price, 0.0008);
+        assert_eq!(output_price, 0.004);
+    }
+
+    #[test]
+    fn test_get_model_prices_anthropic_claude_3_7_sonnet() {
+        let (input_price, output_price) = get_model_prices("anthropic", "claude-3-7-sonnet");
+        assert_eq!(input_price, 0.003);
+        assert_eq!(output_price, 0.015);
+    }
+
+    #[test]
+    fn test_get_model_prices_anthropic_claude_4_sonnet() {
+        let (input_price, output_price) = get_model_prices("anthropic", "claude-4-sonnet");
+        assert_eq!(input_price, 0.003);
+        assert_eq!(output_price, 0.015);
+    }
+
+    #[test]
+    fn test_get_model_prices_anthropic_claude_4_opus() {
+        let (input_price, output_price) = get_model_prices("anthropic", "claude-4-opus");
+        assert_eq!(input_price, 0.015);
+        assert_eq!(output_price, 0.075);
+    }
 }
