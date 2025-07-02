@@ -1,12 +1,13 @@
 # Tokens Price calculator
 
-This takes in account only for some models with the current pricing as end of June 2025.
+This takes in account only for some models with the current pricing as beginning of July 2025.
 
 The AI vendors are the following:
 
 - Google Gemini
 - OpenAI
 - Perplexity AI
+- Anthropic
 - Groq (only stable models)
 
 ## Requirements
@@ -45,7 +46,6 @@ The CLI will ask you for the provider, for example 'openai', and the model you w
 - `gemini-2.5-pro`: The Google Gemini 2.5 Pro model.
 - `gemini-2.5-pro-200k`: The Google Gemini 2.5 Pro 200k model.
 
-
 ### OpenAI
 
 - `gtp-4o`: The OpenAI GPT-4o model, default model.
@@ -68,6 +68,14 @@ The CLI will ask you for the provider, for example 'openai', and the model you w
 - `sonar-reasoning-pro`: The Perplexity AI Sonar Reasoning Pro model.
 - `sonar-deep-research`: The Perplexity AI Sonar Deep Research model.
 - `r1-1776`: The Perplexity AI R1 1776 model.
+
+### Anthropic
+
+- `claude-3-5-haiku`: The Anthropic Claude 3.5 Haiku model.
+- `claude-3-7-sonnet`: The Anthropic Claude 3.7 Sonnet model.
+- `claude-4-sonnet`: The Anthropic Claude 4 Sonnet model.
+- `claude-3-opus`: The Anthropic Claude 3 Opus model.
+- `claude-4-opus`: The Anthropic Claude 4 Opus model.
 
 ### Groq
 
