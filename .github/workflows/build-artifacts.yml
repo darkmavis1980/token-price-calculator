@@ -73,7 +73,7 @@ jobs:
       - name: Download All Artifacts
         uses: actions/download-artifact@v4
         with:
-          path: my-artifact
-          pattern: my-artifact-*
+          path: artifacts
+          pattern: *.*
           merge-multiple: true
-      - run: ls -R my-artifact
+      - run: ls -R artifacts
