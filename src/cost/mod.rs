@@ -5,9 +5,11 @@ pub struct CostResponse {
 
 impl CostResponse {
   pub fn calculate_cost(tokens: i32, requests: i32, pricing: f32) -> Self {
-      let num_tokens: i32 = tokens * requests;
-      let cost_per_million_requests = pricing / 1000000.0;
-      let cost = num_tokens as f32 * cost_per_million_requests;
+
+    let num_tokens: i32 = tokens * requests;
+      // pricing represents the total cost for this calculation
+      // but return 0.0 if there are no tokens
+      let cost = if num_tokens == 0 { 0.0 } else { pricing };
 
       CostResponse { num_tokens, cost }
   }
