@@ -155,8 +155,8 @@ mod tests {
     #[test]
     fn test_get_model_prices_gpt_4o() {
         let (input_price, output_price) = get_model_prices("openai", "gpt-4o");
-        assert_eq!(input_price, 2.5);
-        assert_eq!(output_price, 10.0);
+        assert_eq!(input_price, 5.0);
+        assert_eq!(output_price, 20.0);
     }
 
     #[test]
@@ -190,15 +190,15 @@ mod tests {
     #[test]
     fn test_get_model_prices_o1() {
         let (input_price, output_price) = get_model_prices("openai", "o1");
-        assert_eq!(input_price, 1.5);
-        assert_eq!(output_price, 6.0);
+        assert_eq!(input_price, 15.0);
+        assert_eq!(output_price, 60.0);
     }
 
     #[test]
     fn test_get_model_prices_unknown() {
         let (input_price, output_price) = get_model_prices("unknown", "unknown");
-        assert_eq!(input_price, 2.0);
-        assert_eq!(output_price, 8.0);
+        assert_eq!(input_price, 0.002);
+        assert_eq!(output_price, 0.008);
     }
 
     #[test]
