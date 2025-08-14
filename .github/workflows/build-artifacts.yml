@@ -70,4 +70,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download All Artifacts
-        uses: actions/downloa
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+          pattern: *.*
+          merge-multiple: true
+      - run: ls -R artifacts
