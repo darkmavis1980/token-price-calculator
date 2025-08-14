@@ -1,6 +1,6 @@
 # Tokens Price calculator
 
-This takes in account only for some models with the current pricing as beginning of July 2025.
+This takes in account only for some models with the current pricing as beginning of August 2025.
 
 The AI vendors are the following:
 
@@ -48,6 +48,9 @@ The CLI will ask you for the provider, for example 'openai', and the model you w
 
 ### OpenAI
 
+- `gpt-5`: The OpenAI GPT-5 model.
+- `gpt-5-mini`: The OpenAI GPT-5 Mini model.
+- `gpt-5-nano`: The OpenAI GPT-5 Nano model.
 - `gtp-4o`: The OpenAI GPT-4o model, default model.
 - `gtp-4o-mini`: The OpenAI GPT-4o-mini model.
 - `gpt-4.1`: The OpenAI GPT-4.1 model.
@@ -74,8 +77,8 @@ The CLI will ask you for the provider, for example 'openai', and the model you w
 - `claude-3-5-haiku`: The Anthropic Claude 3.5 Haiku model.
 - `claude-3-7-sonnet`: The Anthropic Claude 3.7 Sonnet model.
 - `claude-4-sonnet`: The Anthropic Claude 4 Sonnet model.
-- `claude-3-opus`: The Anthropic Claude 3 Opus model.
 - `claude-4-opus`: The Anthropic Claude 4 Opus model.
+- `claude-4.1-opus`: The Anthropic Claude 4.1 Opus model.
 
 ### Groq
 

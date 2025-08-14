@@ -1,69 +1,72 @@
 pub fn get_google_model_prices(model: &str) -> (f32, f32) {
     match model {
-        "gemini-1.5-pro" => (0.0035, 0.00105),
-        "gemini-1.5-pro-128k" => (0.0007, 0.0021),
-        "gemini-1.5-flash" => (0.000075, 0.0003),
-        "gemini-1.5-flash-128k" => (0.00015, 0.0006),
-        "gemini-2.0-flash" => (0.0001, 0.0004),
-        "gemini-2.0-flash-lite" => (0.000075, 0.0003),
-        "gemini-2.5-flash" => (0.0003, 0.0025),
-        "gemini-2.5-flash-lite" => (0.0001, 0.0004),
-        "gemini-2.5-pro" => (0.00125, 0.01),
-        "gemini-2.5-pro-200k" => (0.0025, 0.015),
-        _ => (0.0005, 0.0015)
+        "gemini-1.5-pro" => (3.5, 1.05),
+        "gemini-1.5-pro-128k" => (0.7, 2.1),
+        "gemini-1.5-flash" => (0.075, 0.3),
+        "gemini-1.5-flash-128k" => (0.15, 0.6),
+        "gemini-2.0-flash" => (0.1, 0.4),
+        "gemini-2.0-flash-lite" => (0.075, 0.3),
+        "gemini-2.5-flash" => (0.3, 2.5),
+        "gemini-2.5-flash-lite" => (0.1, 0.4),
+        "gemini-2.5-pro" => (1.25, 10.0),
+        "gemini-2.5-pro-200k" => (2.5, 15.0),
+        _ => (0.5, 1.5)
     }
 }
 
 pub fn get_perplexity_model_prices(model: &str) -> (f32, f32) {
     match model {
-        "sonar" => (0.001, 0.001),
-        "sonar-pro" => (0.003, 0.015),
-        "sonar-reasoning" => (0.001, 0.005),
-        "sonar-reasoning-pro" => (0.002, 0.008),
-        "sonar-deep-research" => (0.002, 0.008),
-        "r1-1776" => (0.002, 0.008),
-        _ => (0.001, 0.001)
+        "sonar" => (1.0, 1.0),
+        "sonar-pro" => (3.0, 15.0),
+        "sonar-reasoning" => (1.0, 5.0),
+        "sonar-reasoning-pro" => (2.0, 8.0),
+        "sonar-deep-research" => (2.0, 8.0),
+        "r1-1776" => (2.0, 8.0),
+        _ => (1.0, 1.0)
     }
 }
 
 pub fn get_openai_model_prices(model: &str) -> (f32, f32) {
     match model {
-        "gpt-4o" => (0.0025, 0.01),
-        "gpt-4o-mini" => (0.00015, 0.0006),
-        "gpt-4.1" => (0.002, 0.008),
-        "gpt-4.1-mini" => (0.0004, 0.0016),
-        "gpt-4.1-nano" => (0.0001, 0.0004),
-        "o1" => (0.015, 0.06),
-        "o1-pro" => (0.15, 0.6),
-        "o3" => (0.002, 0.008),
-        "o3-pro" => (0.02, 0.08),
-        "o3-mini" => (0.0011, 0.0044),
-        "o4-mini" => (0.0011, 0.0044),
-        _ => (0.002, 0.008)
+        "gpt-5" => (1.25, 10.0),
+        "gpt-5-mini" => (0.25, 2.0),
+        "gpt-5-nano" => (0.05, 0.4),
+        "gpt-4o" => (5.0, 20.0),
+        "gpt-4o-mini" => (0.6, 2.4),
+        "gpt-4.1" => (2.0, 8.0),
+        "gpt-4.1-mini" => (0.4, 1.6),
+        "gpt-4.1-nano" => (0.1, 0.4),
+        "o1" => (15.0, 60.0),
+        "o1-pro" => (15.0, 60.0),
+        "o3" => (2.0, 8.0),
+        "o3-pro" => (20.0, 80.0),
+        "o3-mini" => (1.1, 4.4),
+        "o4-mini" => (1.1, 4.4),
+        _ => (2.0, 8.0)
     }
 }
 
 pub fn get_anthropic_model_prices(model: &str) -> (f32, f32) {
     match model {
-        "claude-3-5-haiku" => (0.0008, 0.004),
-        "claude-3-7-sonnet" => (0.003, 0.015),
-        "claude-4-sonnet" => (0.003, 0.015),
-        "claude-3-opus" => (0.015, 0.075),
-        "claude-4-opus" => (0.015, 0.075),
-        _ => (0.003, 0.015)
+        "claude-3-5-haiku" => (0.8, 4.0),
+        "claude-3-7-sonnet" => (3.0, 15.0),
+        "claude-4-sonnet" => (3.0, 15.0),
+        "claude-4-opus" => (15.0, 75.0),
+        "claude-4.1-opus" => (15.0, 75.0),
+        _ => (3.0, 15.0)
     }
 }
 pub fn get_groq_model_prices(model: &str) -> (f32, f32) {
     match model {
-        "gemma2-9b-it" => (0.0002, 0.0002),
-        "gemma-7b-it" => (0.00007, 0.00007),
-        "llama-3.1-70b-versatile" => (0.00059, 0.00079),
-        "llama-3.1-8b-instant" => (0.00005, 0.00008),
-        "llama-3.3-70b-versatile" => (0.00059, 0.00079),
-        "llama-4-scout" => (0.00011, 0.00034),
-        "llama-4-maverick" => (0.0002, 0.0006),
-        "llama-guard-4-12b" => (0.0002, 0.0002),
-        _ => (0.00005, 0.00008)
+        "gemma2-9b-it" => (0.2, 0.2),
+        "gemma-7b-it" => (0.07, 0.07),
+        "llama-3.1-70b-versatile" => (0.59, 0.79),
+        "llama-3.1-8b-instant" => (0.05, 0.08),
+        "llama-3.3-70b-versatile" => (0.59, 0.79),
+        "llama-4-scout" => (0.11, 0.34),
+        "llama-4-maverick" => (0.2, 0.6),
+        "llama-guard-4-12b" => (0.2, 0.2),
+        _ => (0.05, 0.08)
     }
 }
 
@@ -79,8 +82,8 @@ pub fn get_model_prices(provider: &str, model: &str) -> (f32, f32) {
 }
 
 pub fn get_perplexity_online_requests_cost(requests: i32) -> i32 {
-    let cost_per_thousand_requests: i32 = 5;
-    let cost = (requests as i32 * cost_per_thousand_requests) / 1000;
+    let cost_per_million_requests: i32 = 5;
+    let cost = (requests as i32 * cost_per_million_requests) / 1000000;
     cost
 }
 
@@ -89,6 +92,9 @@ pub const PROVIDERS: [&str; 5] = ["openai", "google", "perplexity", "groq", "ant
 pub fn get_provider_models(provider: &str) -> Vec<&str> {
     match provider {
         "openai" => vec![
+            "gpt-5",
+            "gpt-5-mini",
+            "gpt-5-nano",
             "gpt-4o",
             "gpt-4o-mini",
             "gpt-4.1",
@@ -126,8 +132,8 @@ pub fn get_provider_models(provider: &str) -> Vec<&str> {
             "claude-3-5-haiku",
             "claude-3-7-sonnet",
             "claude-4-sonnet",
-            "claude-3-opus",
             "claude-4-opus",
+            "claude-4.1-opus",
         ],
         "groq" => vec![
             "gemma2-9b-it",
@@ -150,43 +156,43 @@ mod tests {
     #[test]
     fn test_get_model_prices_gpt_4o() {
         let (input_price, output_price) = get_model_prices("openai", "gpt-4o");
-        assert_eq!(input_price, 0.0025);
-        assert_eq!(output_price, 0.01);
+        assert_eq!(input_price, 5.0);
+        assert_eq!(output_price, 20.0);
     }
 
     #[test]
     fn test_get_model_prices_o3_mini() {
         let (input_price, output_price) = get_model_prices("openai", "o3-mini");
-        assert_eq!(input_price, 0.0011);
-        assert_eq!(output_price, 0.0044);
+        assert_eq!(input_price, 1.1);
+        assert_eq!(output_price, 4.4);
     }
 
     #[test]
     fn test_get_model_prices_o4_mini() {
         let (input_price, output_price) = get_model_prices("openai", "o4-mini");
-        assert_eq!(input_price, 0.0011);
-        assert_eq!(output_price, 0.0044);
+        assert_eq!(input_price, 1.1);
+        assert_eq!(output_price, 4.4);
     }
 
     #[test]
     fn test_get_model_prices_gpt_4o_mini() {
         let (input_price, output_price) = get_model_prices("openai", "gpt-4o-mini");
-        assert_eq!(input_price, 0.00015);
-        assert_eq!(output_price, 0.0006);
+        assert_eq!(input_price, 0.6);
+        assert_eq!(output_price, 2.4);
     }
 
     #[test]
     fn test_get_model_prices_gpt_4() {
         let (input_price, output_price) = get_model_prices("openai", "gpt-4.1");
-        assert_eq!(input_price, 0.002);
-        assert_eq!(output_price, 0.008);
+        assert_eq!(input_price, 2.0);
+        assert_eq!(output_price, 8.0);
     }
 
     #[test]
     fn test_get_model_prices_o1() {
         let (input_price, output_price) = get_model_prices("openai", "o1");
-        assert_eq!(input_price, 0.015);
-        assert_eq!(output_price, 0.06);
+        assert_eq!(input_price, 15.0);
+        assert_eq!(output_price, 60.0);
     }
 
     #[test]
@@ -199,112 +205,112 @@ mod tests {
     #[test]
     fn test_get_model_prices_gemini_1_5_pro() {
         let (input_price, output_price) = get_model_prices("google", "gemini-1.5-pro");
-        assert_eq!(input_price, 0.0035);
-        assert_eq!(output_price, 0.00105);
+        assert_eq!(input_price, 3.5);
+        assert_eq!(output_price, 1.05);
     }
 
     #[test]
     fn test_get_model_prices_gemini_1_5_pro_128k() {
         let (input_price, output_price) = get_model_prices("google", "gemini-1.5-pro-128k");
-        assert_eq!(input_price, 0.0007);
-        assert_eq!(output_price, 0.0021);
+        assert_eq!(input_price, 0.7);
+        assert_eq!(output_price, 2.1);
     }
 
     #[test]
     fn test_get_model_prices_gemini_1_5_flash() {
         let (input_price, output_price) = get_model_prices("google", "gemini-1.5-flash");
-        assert_eq!(input_price, 0.000075);
-        assert_eq!(output_price, 0.0003);
+        assert_eq!(input_price, 0.075);
+        assert_eq!(output_price, 0.3);
     }
 
     #[test]
     fn test_get_model_prices_gemini_1_5_flash_128k() {
         let (input_price, output_price) = get_model_prices("google", "gemini-1.5-flash-128k");
-        assert_eq!(input_price, 0.00015);
-        assert_eq!(output_price, 0.0006);
+        assert_eq!(input_price, 0.15);
+        assert_eq!(output_price, 0.6);
     }
 
     #[test]
     fn test_get_model_prices_gemini_2_0_flash() {
         let (input_price, output_price) = get_model_prices("google", "gemini-2.0-flash");
-        assert_eq!(input_price, 0.0001);
-        assert_eq!(output_price, 0.0004);
+        assert_eq!(input_price, 0.1);
+        assert_eq!(output_price, 0.4);
     }
 
     #[test]
     fn test_get_model_prices_gemini_2_0_flash_lite() {
         let (input_price, output_price) = get_model_prices("google", "gemini-2.0-flash-lite");
-        assert_eq!(input_price, 0.000075);
-        assert_eq!(output_price, 0.0003);
+        assert_eq!(input_price, 0.075);
+        assert_eq!(output_price, 0.3);
     }
 
     #[test]
     fn test_get_model_prices_perplexity_sonar_reasoning_pro() {
         let (input_price, output_price) = get_model_prices("perplexity", "sonar-reasoning-pro");
-        assert_eq!(input_price, 0.002);
-        assert_eq!(output_price, 0.008);
+        assert_eq!(input_price, 2.0);
+        assert_eq!(output_price, 8.0);
     }
 
     #[test]
     fn test_get_model_prices_perplexity_sonar_reasoning() {
         let (input_price, output_price) = get_model_prices("perplexity", "sonar-reasoning");
-        assert_eq!(input_price, 0.001);
-        assert_eq!(output_price, 0.005);
+        assert_eq!(input_price, 1.0);
+        assert_eq!(output_price, 5.0);
     }
 
     #[test]
     fn test_get_model_prices_perplexity_sonar_pro() {
         let (input_price, output_price) = get_model_prices("perplexity", "sonar-pro");
-        assert_eq!(input_price, 0.003);
-        assert_eq!(output_price, 0.015);
+        assert_eq!(input_price, 3.0);
+        assert_eq!(output_price, 15.0);
     }
 
     #[test]
     fn test_get_model_prices_perplexity_sonar() {
         let (input_price, output_price) = get_model_prices("perplexity", "sonar");
-        assert_eq!(input_price, 0.001);
-        assert_eq!(output_price, 0.001);
+        assert_eq!(input_price, 1.0);
+        assert_eq!(output_price, 1.0);
     }
 
     #[test]
     fn test_get_model_prices_perplexity_sonar_deep_research() {
         let (input_price, output_price) = get_model_prices("perplexity", "sonar-deep-research");
-        assert_eq!(input_price, 0.002);
-        assert_eq!(output_price, 0.008);
+        assert_eq!(input_price, 2.0);
+        assert_eq!(output_price, 8.0);
     }
 
     #[test]
     fn test_get_model_prices_perplexity_r1_1776() {
         let (input_price, output_price) = get_model_prices("perplexity", "r1-1776");
-        assert_eq!(input_price, 0.002);
-        assert_eq!(output_price, 0.008);
+        assert_eq!(input_price, 2.0);
+        assert_eq!(output_price, 8.0);
     }
 
     #[test]
     fn test_get_model_prices_anthropic_claude_3_5_haiku() {
         let (input_price, output_price) = get_model_prices("anthropic", "claude-3-5-haiku");
-        assert_eq!(input_price, 0.0008);
-        assert_eq!(output_price, 0.004);
+        assert_eq!(input_price, 0.8);
+        assert_eq!(output_price, 4.0);
     }
 
     #[test]
     fn test_get_model_prices_anthropic_claude_3_7_sonnet() {
         let (input_price, output_price) = get_model_prices("anthropic", "claude-3-7-sonnet");
-        assert_eq!(input_price, 0.003);
-        assert_eq!(output_price, 0.015);
+        assert_eq!(input_price, 3.0);
+        assert_eq!(output_price, 15.0);
     }
 
     #[test]
     fn test_get_model_prices_anthropic_claude_4_sonnet() {
         let (input_price, output_price) = get_model_prices("anthropic", "claude-4-sonnet");
-        assert_eq!(input_price, 0.003);
-        assert_eq!(output_price, 0.015);
+        assert_eq!(input_price, 3.0);
+        assert_eq!(output_price, 15.0);
     }
 
     #[test]
     fn test_get_model_prices_anthropic_claude_4_opus() {
         let (input_price, output_price) = get_model_prices("anthropic", "claude-4-opus");
-        assert_eq!(input_price, 0.015);
-        assert_eq!(output_price, 0.075);
+        assert_eq!(input_price, 15.0);
+        assert_eq!(output_price, 75.0);
     }
 }
