@@ -57,20 +57,17 @@ jobs:
       run: |
         mkdir artifacts
         cp target/release/token_calculator artifacts/${{ matrix.asset_name }}
-  upload:
-    strategy:
-      matrix:
-        runs-on: [ubuntu-latest, macos-latest, windows-latest]
-    runs-on: ${{ matrix.runs-on }}
-    steps:
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: ${{ matrix.artifact_name }}-${{ matrix.runs-on }}
-          path: artifacts/${{ matrix.asset_name }}
-          retention-days: 30
+    
+    # Upload directly from the build job
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ matrix.artifact_name }}
+        path: artifacts/${{ matrix.asset_name }}
+        retention-days: 30
+
   download:
-    needs: upload
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Download All Artifacts
@@ -78,4 +75,6 @@ jobs:
         with:
           path: artifacts
           merge-multiple: true
-      - run: ls -R artifacts
+      
+      - name: List artifacts
+        run: ls -R artifacts
