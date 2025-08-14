@@ -1,11 +1,14 @@
-name: Build Artifacts
+name: "Build Artifacts"
+
+permissions:
+  contents: write
 
 on:
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
-  # Optionally trigger on push to specific branches if desired
-  # push:
-  #   branches: [ "feature/**" ]
+
+env:
+  ACTIONS_STEP_DEBUG: true
+  PROJECT_NAME: calculator
 
 jobs:
   build:
