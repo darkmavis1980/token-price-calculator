@@ -31,6 +31,7 @@ pub fn get_openai_model_prices(model: &str) -> (f32, f32) {
         "gpt-5" => (1.25, 10.0),
         "gpt-5-mini" => (0.25, 2.0),
         "gpt-5-nano" => (0.05, 0.4),
+        "gpt-5-codex" => (1.25, 10.0),
         "gpt-4o" => (5.0, 20.0),
         "gpt-4o-mini" => (0.6, 2.4),
         "gpt-4.1" => (2.0, 8.0),
@@ -95,6 +96,7 @@ pub fn get_provider_models(provider: &str) -> Vec<&str> {
             "gpt-5",
             "gpt-5-mini",
             "gpt-5-nano",
+            "gpt-5-codex",
             "gpt-4o",
             "gpt-4o-mini",
             "gpt-4.1",
@@ -152,6 +154,34 @@ pub fn get_provider_models(provider: &str) -> Vec<&str> {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn test_get_model_prices_gpt_5_codex() {
+        let (input_price, output_price) = get_model_prices("openai", "gpt-5-codex");
+        assert_eq!(input_price, 1.25);
+        assert_eq!(output_price, 10.0);
+    }
+
+    #[test]
+    fn test_get_model_prices_gpt_5() {
+        let (input_price, output_price) = get_model_prices("openai", "gpt-5");
+        assert_eq!(input_price, 1.25);
+        assert_eq!(output_price, 10.0);
+    }
+
+    #[test]
+    fn test_get_model_prices_gpt_5_mini() {
+        let (input_price, output_price) = get_model_prices("openai", "gpt-5-mini");
+        assert_eq!(input_price, 0.25);
+        assert_eq!(output_price, 2.0);
+    }
+    
+    #[test]
+    fn test_get_model_prices_gpt_5_nano() {
+        let (input_price, output_price) = get_model_prices("openai", "gpt-5-nano");
+        assert_eq!(input_price, 0.05);
+        assert_eq!(output_price, 0.4);
+    }
 
     #[test]
     fn test_get_model_prices_gpt_4o() {
