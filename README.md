@@ -52,11 +52,11 @@ The CLI will ask you for the provider, for example 'openai', and the model you w
 - `gpt-5-mini`: The OpenAI GPT-5 Mini model.
 - `gpt-5-nano`: The OpenAI GPT-5 Nano model.
 - `gpt-5-codex`: The OpenAI GPT-5 Codex model.
-- `gtp-4o`: The OpenAI GPT-4o model, default model.
-- `gtp-4o-mini`: The OpenAI GPT-4o-mini model.
+- `gpt-4o`: The OpenAI GPT-4o model, default model.
+- `gpt-4o-mini`: The OpenAI GPT-4o Mini model.
 - `gpt-4.1`: The OpenAI GPT-4.1 model.
-- `gpt-4.1-mini`: The OpenAI GPT-4.1-mini model.
-- `gpt-4.1-nano`: The OpenAI GPT-4.1-nano model.
+- `gpt-4.1-mini`: The OpenAI GPT-4.1 Mini model.
+- `gpt-4.1-nano`: The OpenAI GPT-4.1 Nano model.
 - `o1`: The OpenAI O1 model.
 - `o1-pro`: The OpenAI O1 Pro model.
 - `o3`: The OpenAI O3 model.
