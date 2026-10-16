@@ -12,6 +12,21 @@ The AI vendors are the following:
 - Anthropic
 - Groq (only stable models)
 
+## Download
+
+Prebuilt binaries for Linux (x86_64, ARM64), macOS (Apple Silicon, Intel) and Windows are attached to each [GitHub release](https://github.com/darkmavis1980/token_calculator/releases), together with a `SHA256SUMS` file.
+
+```sh
+# Example for macOS on Apple Silicon, replace the version and target as needed
+curl -LO https://github.com/darkmavis1980/token_calculator/releases/download/v0.20.1/token_calculator-v0.20.1-aarch64-apple-darwin.tar.gz
+tar -xzf token_calculator-v0.20.1-aarch64-apple-darwin.tar.gz
+./calculator
+```
+
+On macOS you may need to clear the quarantine flag the first time: `xattr -d com.apple.quarantine ./calculator`.
+
+To build from source instead, follow the steps below.
+
 ## Requirements
 
 1. Make sure you have Rust installed on your system. You can check the official installation guide here: https://www.rust-lang.org/tools/install

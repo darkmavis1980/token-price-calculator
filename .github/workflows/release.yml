@@ -9,60 +9,9 @@ on:
     tags:
       - 'v*'  # Trigger on version tags
 
-env:
-  ACTIONS_STEP_DEBUG: true
-  PROJECT_NAME: calculator
-
 jobs:
   build:
-    name: Build ${{ matrix.os }}
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
-        include:
-          - os: ubuntu-latest
-            artifact_name: token_calculator-linux
-            asset_name: token_calculator-linux
-          - os: windows-latest
-            artifact_name: token_calculator-windows
-            asset_name: token_calculator-windows.exe
-          - os: macos-latest
-            artifact_name: token_calculator-macos
-            asset_name: token_calculator-macos
-
-    steps:
-    - uses: actions/checkout@v7
-    
-    - name: Setup Rust
-      uses: dtolnay/rust-toolchain@stable
-
-    - name: Cache cargo
-      uses: Swatinem/rust-cache@v2
-
-    - name: Build
-      run: cargo build --release
-    
-    - name: Prepare artifacts (Windows)
-      if: matrix.os == 'windows-latest'
-      run: |
-        mkdir artifacts
-        copy target/release/calculator.exe artifacts/${{ matrix.asset_name }}
-      shell: pwsh
-  
-    - name: Prepare artifacts (Unix)
-      if: matrix.os != 'windows-latest'
-      run: |
-        mkdir artifacts
-        cp target/release/calculator artifacts/${{ matrix.asset_name }}
-    
-    - name: Upload artifacts
-      uses: actions/upload-artifact@v7
-      with:
-        name: ${{ matrix.artifact_name }}
-        path: artifacts/${{ matrix.asset_name }}
-        retention-days: 30
+    uses: ./.github/workflows/build-artifacts.yml
 
   release:
     needs: build
@@ -73,12 +22,19 @@ jobs:
         uses: actions/download-artifact@v8
         with:
           path: artifacts
-      
+          merge-multiple: true
+
+      - name: Generate checksums
+        working-directory: artifacts
+        run: |
+          sha256sum token_calculator-* > SHA256SUMS
+          cat SHA256SUMS
+
       - name: Create Release
         uses: softprops/action-gh-release@v3
         with:
-          files: artifacts/**/*
+          files: artifacts/*
           draft: false
           prerelease: false
         env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
