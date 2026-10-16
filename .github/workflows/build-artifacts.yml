@@ -1,73 +1,73 @@
 name: "Build Artifacts"
 
 permissions:
-  contents: write
+  contents: read
 
 on:
   workflow_dispatch:
+  workflow_call:
 
 env:
-  ACTIONS_STEP_DEBUG: true
   PROJECT_NAME: calculator
 
 jobs:
   build:
-    name: Build ${{ matrix.os }}
+    name: Build ${{ matrix.target }}
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
         include:
           - os: ubuntu-latest
-            artifact_name: token_calculator-linux
-            asset_name: token_calculator-linux
-          - os: windows-latest
-            artifact_name: token_calculator-windows
-            asset_name: token_calculator-windows.exe
+            target: x86_64-unknown-linux-gnu
+          - os: ubuntu-24.04-arm
+            target: aarch64-unknown-linux-gnu
           - os: macos-latest
-            artifact_name: token_calculator-macos
-            asset_name: token_calculator-macos
+            target: aarch64-apple-darwin
+          - os: macos-latest
+            target: x86_64-apple-darwin
+          - os: windows-latest
+            target: x86_64-pc-windows-msvc
+
+    env:
+      ARCHIVE_NAME: token_calculator-${{ github.ref_type == 'tag' && github.ref_name || 'dev' }}-${{ matrix.target }}
 
     steps:
     - uses: actions/checkout@v7
-    
+
     - name: Setup Rust
       uses: dtolnay/rust-toolchain@stable
+      with:
+        targets: ${{ matrix.target }}
 
     - name: Cache cargo
       uses: Swatinem/rust-cache@v2
+      with:
+        key: ${{ matrix.target }}
 
     - name: Build
-      run: cargo build --release
-    
-    - name: Prepare artifacts (Windows)
-      if: matrix.os == 'windows-latest'
+      run: cargo build --release --locked --target ${{ matrix.target }}
+
+    # tar.gz keeps the executable bit on Linux/macOS, so the binary runs without chmod
+    - name: Package (Unix)
+      if: runner.os != 'Windows'
       run: |
         mkdir artifacts
-        copy target/release/calculator.exe artifacts/${{ matrix.asset_name }}
+        tar -czf "artifacts/${ARCHIVE_NAME}.tar.gz" -C "target/${{ matrix.target }}/release" "${PROJECT_NAME}"
+        echo "ASSET=artifacts/${ARCHIVE_NAME}.tar.gz" >> "$GITHUB_ENV"
+
+    - name: Package (Windows)
+      if: runner.os == 'Windows'
       shell: pwsh
-  
-    - name: Prepare artifacts (Unix)
-      if: matrix.os != 'windows-latest'
       run: |
         mkdir artifacts
-        cp target/release/calculator artifacts/${{ matrix.asset_name }}
-    
+        Compress-Archive -Path target/${{ matrix.target }}/release/$env:PROJECT_NAME.exe -DestinationPath artifacts/$env:ARCHIVE_NAME.zip
+        "ASSET=artifacts/$env:ARCHIVE_NAME.zip" | Out-File -FilePath $env:GITHUB_ENV -Append
+
+    # archive: false uploads the tar.gz/zip as-is instead of wrapping it in another zip
     - name: Upload artifacts
       uses: actions/upload-artifact@v7
       with:
-        name: ${{ matrix.artifact_name }}
-        path: artifacts/${{ matrix.asset_name }}
+        path: ${{ env.ASSET }}
+        archive: false
         retention-days: 30
-
-  download:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download All Artifacts
-        uses: actions/download-artifact@v8
-        with:
-          path: artifacts
-          merge-multiple: true
-      - run: ls -R artifacts
