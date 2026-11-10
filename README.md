@@ -1,6 +1,6 @@
 # Tokens Price calculator
 
-This takes in account only for some models with the current pricing as of mid-October 2026 (standard tier, USD per 1M tokens).
+This takes in account only for some models with the current pricing as of 2026-11-10 (standard tier, USD per 1M tokens).
 
 Models with long-context pricing have a separate entry with a suffix (e.g. `-200k`, `-272k`, `-100k`): pick that entry when your prompts exceed that size.
 
@@ -52,17 +52,18 @@ The CLI will ask you for the provider, for example 'openai', and the model you w
 
 ### Google
 
+- `gemini-4-carbon`: The Google Gemini 4 Carbon model (introductory price until 2026-11-30, it doubles after).
 - `gemini-4-argon`: The Google Gemini 4 Argon model (introductory price until 2026-11-30, it doubles after).
 - `gemini-3.8-flash`: The Google Gemini 3.8 Flash model (introductory price until 2026-12-31, it doubles after).
 - `gemini-3.6-flash`: The Google Gemini 3.6 Flash model (introductory price until 2026-12-31, it doubles after).
 - `gemini-3.5-flash-lite`: The Google Gemini 3.5 Flash Lite model.
 - `gemini-3.1-pro-preview`: The Google Gemini 3.1 Pro Preview model.
 - `gemini-3.1-pro-preview-200k`: The Google Gemini 3.1 Pro Preview model, prompts over 200k tokens.
-- `gemini-3.1-flash-lite`: The Google Gemini 3.1 Flash Lite model.
+- `gemini-3.1-flash-lite`: The Google Gemini 3.1 Flash Lite model (shuts down 2027-05-07).
 - `gemini-3-flash-preview`: The Google Gemini 3 Flash Preview model.
-- `gemini-2.5-pro`: The Google Gemini 2.5 Pro model.
+- `gemini-2.5-pro`: The Google Gemini 2.5 Pro model (shuts down 2026-12-01, requests then route to `gemini-3.8-flash`).
 - `gemini-2.5-pro-200k`: The Google Gemini 2.5 Pro model, prompts over 200k tokens.
-- `gemini-2.5-flash`: The Google Gemini 2.5 Flash model.
+- `gemini-2.5-flash`: The Google Gemini 2.5 Flash model (shuts down 2026-12-01, requests then route to `gemini-3.5-flash-lite`).
 - `gemini-2.5-flash-lite`: The Google Gemini 2.5 Flash Lite model.
 
 [Pricing reference](https://ai.google.dev/gemini-api/docs/pricing)
@@ -71,9 +72,10 @@ The CLI will ask you for the provider, for example 'openai', and the model you w
 
 - `gpt-6-astra`: The OpenAI GPT-6 Astra model.
 - `gpt-6.1-sol`: The OpenAI GPT-6.1 Sol model.
+- `gpt-6.1-terra`: The OpenAI GPT-6.1 Terra model.
 - `gpt-6-sol`: The OpenAI GPT-6 Sol model.
 - `gpt-6-luna`: The OpenAI GPT-6 Luna model.
-- `gpt-5.6-sol`: The OpenAI GPT-5.6 Sol model (promotional price through at least 2026-11-21).
+- `gpt-5.6-sol`: The OpenAI GPT-5.6 Sol model (promotional price until 2026-11-30).
 - `gpt-5.6-terra`: The OpenAI GPT-5.6 Terra model.
 - `gpt-5.6-luna`: The OpenAI GPT-5.6 Luna model.
 - `gpt-5.5`: The OpenAI GPT-5.5 model.
@@ -81,39 +83,51 @@ The CLI will ask you for the provider, for example 'openai', and the model you w
 - `gpt-5.4`: The OpenAI GPT-5.4 model.
 - `gpt-5.4-pro`: The OpenAI GPT-5.4 Pro model.
 - `gpt-5.4-mini`: The OpenAI GPT-5.4 Mini model.
-- `gpt-5.4-nano`: The OpenAI GPT-5.4 Nano model.
-- `gpt-5.3-codex`: The OpenAI GPT-5.3 Codex model.
+- `gpt-5.4-nano`: The OpenAI GPT-5.4 Nano model (deprecated, shuts down 2027-04-01).
+- `gpt-5.3-codex`: The OpenAI GPT-5.3 Codex model (deprecated, shuts down 2027-04-01).
 - `gpt-5.2`: The OpenAI GPT-5.2 model.
 - `gpt-5.2-pro`: The OpenAI GPT-5.2 Pro model.
-- `gpt-5.1`: The OpenAI GPT-5.1 model.
-- `gpt-5`: The OpenAI GPT-5 model.
-- `gpt-5-mini`: The OpenAI GPT-5 Mini model.
-- `gpt-5-nano`: The OpenAI GPT-5 Nano model.
-- `gpt-5-pro`: The OpenAI GPT-5 Pro model.
-- `gpt-4.1`: The OpenAI GPT-4.1 model.
-- `gpt-4.1-mini`: The OpenAI GPT-4.1 Mini model.
-- `gpt-4o`: The OpenAI GPT-4o model.
-- `gpt-4o-mini`: The OpenAI GPT-4o Mini model.
-- `o3`: The OpenAI O3 model.
-- `o3-pro`: The OpenAI O3 Pro model.
+- `gpt-5.1`: The OpenAI GPT-5.1 model (deprecated, shuts down 2027-04-01).
+- `gpt-5`: The OpenAI GPT-5 model (deprecated, shuts down 2026-12-11).
+- `gpt-5-mini`: The OpenAI GPT-5 Mini model (deprecated, shuts down 2026-12-11).
+- `gpt-5-nano`: The OpenAI GPT-5 Nano model (deprecated, shuts down 2026-12-11).
+- `gpt-5-pro`: The OpenAI GPT-5 Pro model (deprecated, shuts down 2026-12-11).
+- `gpt-4.1`: The OpenAI GPT-4.1 model (deprecated, shuts down 2027-01-14).
+- `gpt-4.1-mini`: The OpenAI GPT-4.1 Mini model (deprecated, shuts down 2027-01-14).
+- `gpt-4o`: The OpenAI GPT-4o model (deprecated, shuts down 2027-01-14).
+- `gpt-4o-mini`: The OpenAI GPT-4o Mini model (deprecated, shuts down 2027-01-14).
+- `o3`: The OpenAI O3 model (deprecated, shuts down 2026-12-11).
+- `o3-pro`: The OpenAI O3 Pro model (deprecated, shuts down 2026-12-11).
 
-Long-context (prompts over 272k tokens) entries: `gpt-6-astra-272k`, `gpt-6.1-sol-272k`, `gpt-6-sol-272k`, `gpt-6-luna-272k`, `gpt-5.6-sol-272k`, `gpt-5.6-terra-272k`, `gpt-5.5-272k`, `gpt-5.4-272k`, `gpt-5.4-pro-272k`.
+Long-context (prompts over 272k tokens) entries: `gpt-6-astra-272k`, `gpt-6.1-sol-272k`, `gpt-6.1-terra-272k`, `gpt-6-sol-272k`, `gpt-6-luna-272k`, `gpt-5.6-sol-272k`, `gpt-5.6-terra-272k`, `gpt-5.6-luna-272k`, `gpt-5.5-272k`, `gpt-5.5-pro-272k`, `gpt-5.4-272k`, `gpt-5.4-pro-272k`.
 
 [Pricing reference](https://developers.openai.com/api/docs/pricing)
 
 ### Perplexity AI
+
+Agent API models hosted by Perplexity:
+
+- `perplexity/sonar`: The Perplexity Sonar model on the Agent API.
+- `perplexity/kimi-k3`: Kimi K3 served by Perplexity.
+- `perplexity/glm-5.3`: GLM 5.3 served by Perplexity.
+- `perplexity/glm-5.3-flash`: GLM 5.3 Flash served by Perplexity.
+- `perplexity/deepseek-v4-pro-0813`: DeepSeek V4 Pro served by Perplexity.
+- `perplexity/nemotron-3.5-super-120b-a12b`: Nemotron 3.5 Super served by Perplexity.
+
+Legacy Sonar Chat Completions models (support ended 2026-09-27; sync/streaming requests are being reformulated as Agent API requests, and it is not documented whether they are still billed at these legacy rates):
 
 - `sonar`: The Perplexity AI Sonar model.
 - `sonar-pro`: The Perplexity AI Sonar Pro model.
 - `sonar-reasoning-pro`: The Perplexity AI Sonar Reasoning Pro model.
 - `sonar-deep-research`: The Perplexity AI Sonar Deep Research model.
 
-Prices are token costs only; per-request search fees and Deep Research citation/reasoning/search charges are not included.
+Third-party models resold through the Agent API (OpenAI, Anthropic, Google, xAI) are not listed here; use the original provider's entry. Prices are token costs only; per-request search/tool fees and Deep Research citation/reasoning/search charges are not included.
 
-[Pricing reference](https://docs.perplexity.ai/getting-started/pricing)
+[Pricing reference](https://docs.perplexity.ai/docs/agent-api/models)
 
 ### Anthropic
 
+- `claude-fable-5-2`: The Anthropic Claude Fable 5.2 model.
 - `claude-fable-5-1`: The Anthropic Claude Fable 5.1 model.
 - `claude-fable-5`: The Anthropic Claude Fable 5 model.
 - `claude-opus-5-5`: The Anthropic Claude Opus 5.5 model.
