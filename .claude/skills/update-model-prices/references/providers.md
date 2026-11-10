@@ -2,7 +2,7 @@
 
 Primary sources per provider, plus gotchas learned on previous runs. Update this file when a URL moves or a new trap shows up.
 
-Last verified: 2026-10-16.
+Last verified: 2026-11-10.
 
 ## OpenAI
 - Pricing: https://developers.openai.com/api/docs/pricing (platform.openai.com/docs/pricing 301-redirects here)
@@ -10,6 +10,7 @@ Last verified: 2026-10-16.
 - Deprecations: https://developers.openai.com/api/docs/deprecations
 - Gotchas:
   - Use the `"tier":"standard"` table embedded in the page data. Many cells are rendered client-side, so curl the raw HTML and parse it; WebFetch's summary omitted gpt-5.3-codex last time.
+  - The ">272K" prices are not in the server-rendered HTML; they live in a hardcoded `m.standard` table in the pricing page's JS bundle (`/_astro/pricing.*.js`). Some models (e.g. gpt-5.5-pro) have a long-context price there but no rule on their model page.
   - Long context (>272K input tokens) is typically 2x input / 1.5x output for the whole request, but only for models whose page says so.
   - Many models carry a shutdown date a few weeks out — check deprecations before keeping older ones.
 
@@ -23,19 +24,23 @@ Last verified: 2026-10-16.
   - Claude 4.7+ uses a newer tokenizer (~30% more tokens for the same text); worth mentioning if the user asks about comparing costs across generations.
 
 ## Google Gemini
-- Pricing: https://ai.google.dev/gemini-api/docs/pricing (use the paid tier, Standard, not Batch)
+- Pricing: https://ai.google.dev/gemini-api/docs/pricing → now redirects to https://aistudio.google.com/docs/pricing (`.md` version also works) (use the paid tier, Standard, not Batch)
 - Deprecations: https://ai.google.dev/gemini-api/docs/deprecations
 - Gotchas:
   - Some models are tiered by prompt length (<=200k vs >200k); others have a dated introductory price that later doubles — these are different things.
   - In the raw HTML the "<= 200k" label can be dropped from tiered rows; the first price is the lower tier.
+  - One curl of the redirected pricing URL once returned an unrelated (OpenAI) page — check the body contains "gemini" before parsing, and refetch if not.
   - Live, Omni (video), and Robotics models also have text prices — skip them unless the user asks.
 
 ## Perplexity
-- Pricing: https://docs.perplexity.ai/getting-started/pricing
+- Pricing: https://docs.perplexity.ai/docs/getting-started/pricing (no longer has Sonar or per-model token prices)
+- Agent API models + per-token prices: https://docs.perplexity.ai/docs/agent-api/models (append `.md` for raw)
+- Legacy Sonar prices: https://docs.perplexity.ai/docs/legacy/sonar/models/{id} (not in llms.txt/sitemap)
 - Changelog: https://docs.perplexity.ai/changelog
 - Migration guide: https://docs.perplexity.ai/docs/agent-api/migrate-from-sonar/overview
 - Gotchas:
-  - Sonar Chat Completions is being replaced by the Agent API (support ended 2026-09-27). The Sonar table is still published; Agent API presets have no per-token price list yet. Re-check whether to switch models.
+  - Sonar Chat Completions support ended 2026-09-27; sync/streaming requests are reformulated as Agent API requests (billing rate undocumented). As of 2026-11-10 the repo keeps legacy `sonar*` plus Perplexity-hosted `perplexity/*` Agent API models; resold OpenAI/Anthropic/Google/xAI models are skipped as duplicates. Re-check whether to drop legacy Sonar.
+  - Agent API effort levels (formerly presets) have no own price; they bill at the underlying model's rate.
   - Token prices exclude per-request search fees and Deep Research extras (citation/reasoning tokens, search queries). The calculator only models tokens.
 
 ## Groq
