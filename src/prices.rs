@@ -1,5 +1,6 @@
 pub fn get_google_model_prices(model: &str) -> (f32, f32) {
     match model {
+        "gemini-4-carbon" => (2.0, 10.0),
         "gemini-4-argon" => (2.0, 10.0),
         "gemini-3.8-flash" => (0.75, 3.75),
         "gemini-3.6-flash" => (0.75, 3.75),
@@ -18,6 +19,12 @@ pub fn get_google_model_prices(model: &str) -> (f32, f32) {
 
 pub fn get_perplexity_model_prices(model: &str) -> (f32, f32) {
     match model {
+        "perplexity/sonar" => (0.25, 2.5),
+        "perplexity/kimi-k3" => (3.0, 15.0),
+        "perplexity/glm-5.3" => (1.4, 4.4),
+        "perplexity/glm-5.3-flash" => (0.15, 0.5),
+        "perplexity/deepseek-v4-pro-0813" => (1.32, 3.96),
+        "perplexity/nemotron-3.5-super-120b-a12b" => (0.2, 0.5),
         "sonar" => (1.0, 1.0),
         "sonar-pro" => (3.0, 15.0),
         "sonar-reasoning-pro" => (2.0, 8.0),
@@ -32,6 +39,8 @@ pub fn get_openai_model_prices(model: &str) -> (f32, f32) {
         "gpt-6-astra-272k" => (20.0, 75.0),
         "gpt-6.1-sol" => (2.0, 10.0),
         "gpt-6.1-sol-272k" => (4.0, 15.0),
+        "gpt-6.1-terra" => (1.0, 5.0),
+        "gpt-6.1-terra-272k" => (2.0, 7.5),
         "gpt-6-sol" => (2.0, 10.0),
         "gpt-6-sol-272k" => (4.0, 15.0),
         "gpt-6-luna" => (0.1, 0.5),
@@ -41,9 +50,11 @@ pub fn get_openai_model_prices(model: &str) -> (f32, f32) {
         "gpt-5.6-terra" => (2.0, 12.0),
         "gpt-5.6-terra-272k" => (4.0, 18.0),
         "gpt-5.6-luna" => (0.2, 1.2),
+        "gpt-5.6-luna-272k" => (0.4, 1.8),
         "gpt-5.5" => (5.0, 30.0),
         "gpt-5.5-272k" => (10.0, 45.0),
         "gpt-5.5-pro" => (30.0, 180.0),
+        "gpt-5.5-pro-272k" => (60.0, 270.0),
         "gpt-5.4" => (2.5, 15.0),
         "gpt-5.4-272k" => (5.0, 22.5),
         "gpt-5.4-pro" => (30.0, 180.0),
@@ -70,6 +81,7 @@ pub fn get_openai_model_prices(model: &str) -> (f32, f32) {
 
 pub fn get_anthropic_model_prices(model: &str) -> (f32, f32) {
     match model {
+        "claude-fable-5-2" => (8.0, 40.0),
         "claude-fable-5-1" => (10.0, 50.0),
         "claude-fable-5" => (10.0, 50.0),
         "claude-opus-5-5" => (4.0, 20.0),
@@ -122,6 +134,8 @@ pub fn get_provider_models(provider: &str) -> Vec<&str> {
             "gpt-6-astra-272k",
             "gpt-6.1-sol",
             "gpt-6.1-sol-272k",
+            "gpt-6.1-terra",
+            "gpt-6.1-terra-272k",
             "gpt-6-sol",
             "gpt-6-sol-272k",
             "gpt-6-luna",
@@ -131,9 +145,11 @@ pub fn get_provider_models(provider: &str) -> Vec<&str> {
             "gpt-5.6-terra",
             "gpt-5.6-terra-272k",
             "gpt-5.6-luna",
+            "gpt-5.6-luna-272k",
             "gpt-5.5",
             "gpt-5.5-272k",
             "gpt-5.5-pro",
+            "gpt-5.5-pro-272k",
             "gpt-5.4",
             "gpt-5.4-272k",
             "gpt-5.4-pro",
@@ -156,6 +172,7 @@ pub fn get_provider_models(provider: &str) -> Vec<&str> {
             "o3-pro",
         ],
         "google" => vec![
+            "gemini-4-carbon",
             "gemini-4-argon",
             "gemini-3.8-flash",
             "gemini-3.6-flash",
@@ -170,12 +187,19 @@ pub fn get_provider_models(provider: &str) -> Vec<&str> {
             "gemini-2.5-flash-lite",
         ],
         "perplexity" => vec![
+            "perplexity/sonar",
+            "perplexity/kimi-k3",
+            "perplexity/glm-5.3",
+            "perplexity/glm-5.3-flash",
+            "perplexity/deepseek-v4-pro-0813",
+            "perplexity/nemotron-3.5-super-120b-a12b",
             "sonar",
             "sonar-pro",
             "sonar-reasoning-pro",
             "sonar-deep-research",
         ],
         "anthropic" => vec![
+            "claude-fable-5-2",
             "claude-fable-5-1",
             "claude-fable-5",
             "claude-opus-5-5",
@@ -261,6 +285,37 @@ mod tests {
     fn test_get_model_prices_gpt_4o() {
         assert_eq!(get_model_prices("openai", "gpt-4o"), (2.5, 10.0));
         assert_eq!(get_model_prices("openai", "gpt-4o-mini"), (0.15, 0.6));
+    }
+
+    #[test]
+    fn test_get_model_prices_gpt_6_1_terra() {
+        assert_eq!(get_model_prices("openai", "gpt-6.1-terra"), (1.0, 5.0));
+        assert_eq!(get_model_prices("openai", "gpt-6.1-terra-272k"), (2.0, 7.5));
+    }
+
+    #[test]
+    fn test_get_model_prices_gpt_5_6_luna_and_5_5_pro_tiers() {
+        assert_eq!(get_model_prices("openai", "gpt-5.6-luna"), (0.2, 1.2));
+        assert_eq!(get_model_prices("openai", "gpt-5.6-luna-272k"), (0.4, 1.8));
+        assert_eq!(get_model_prices("openai", "gpt-5.5-pro-272k"), (60.0, 270.0));
+    }
+
+    #[test]
+    fn test_get_model_prices_gemini_4() {
+        assert_eq!(get_model_prices("google", "gemini-4-carbon"), (2.0, 10.0));
+        assert_eq!(get_model_prices("google", "gemini-4-argon"), (2.0, 10.0));
+    }
+
+    #[test]
+    fn test_get_model_prices_perplexity_agent_api() {
+        assert_eq!(get_model_prices("perplexity", "perplexity/sonar"), (0.25, 2.5));
+        assert_eq!(get_model_prices("perplexity", "perplexity/kimi-k3"), (3.0, 15.0));
+        assert_eq!(get_model_prices("perplexity", "perplexity/deepseek-v4-pro-0813"), (1.32, 3.96));
+    }
+
+    #[test]
+    fn test_get_model_prices_anthropic_fable_5_2() {
+        assert_eq!(get_model_prices("anthropic", "claude-fable-5-2"), (8.0, 40.0));
     }
 
     #[test]
